@@ -1,0 +1,6 @@
+Main-Class: me.samoa.chess.Main
+Name: me/samoa/chess
+Specification-Title: Webale Chess Game
+Specification-Vendor: Team Samoa Trimester 20/21
+Implementation-Title: me.samoa.chess
+Implementation-Vendor: Team Samoa Trimester 20/21
