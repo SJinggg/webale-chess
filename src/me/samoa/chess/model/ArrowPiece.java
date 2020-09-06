@@ -45,9 +45,12 @@ public class ArrowPiece extends Piece {
         for(int i = 1; i <= dist; i++) {
           if (super.getBoard().getSlotOccupied(slot.getRow() + i, slot.getCol())) {
             // if destination slot has a piece and is an ally piece
-            if (i == dist && super.getBoard().getSlotOccupiedPiece(slot.getRow() + i, slot.getCol()).teamIdentify(super.getPlayer().getTeam())) {
-              return false
+            if (i == dist) {
+              if (super.getBoard().getSlotOccupiedPiece(slot.getRow() + i, slot.getCol()).teamIdentify(super.getPlayer().getTeam())) {
+                return false;
+              }
             }
+            else return false;
           }
         }
         return true;
@@ -59,9 +62,12 @@ public class ArrowPiece extends Piece {
         for(int i = 1; i < dist; i++){
           if (super.getBoard().getSlotOccupied(slot.getRow() - i, slot.getCol())) {
             // if destination slot has a piece and is an ally piece
-            if (i == dist && super.getBoard().getSlotOccupiedPiece(slot.getRow() + i, slot.getCol()).teamIdentify(super.getPlayer().getTeam())) {
-              return false
+            if (i == dist) {
+              if (super.getBoard().getSlotOccupiedPiece(slot.getRow() + i, slot.getCol()).teamIdentify(super.getPlayer().getTeam())) {
+                return false;
+              }
             }
+            else return false;
           }
         }
         return true;
