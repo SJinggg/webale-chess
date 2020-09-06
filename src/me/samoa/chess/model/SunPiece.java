@@ -1,39 +1,45 @@
 package me.samoa.chess.model;
 
 /**
- * The Sun moves in a straight line in any direction at one slot at a time
- * Cannot skip over the other pieces.
- * Once eaten the player of the Sun Piece looses
+ * The Sun piece can move one step in any direction.
+ * It CANNOT skip over other pieces.
+ * The player who eats the Sun piece of the opposing team first wins.
  */
 
 public class SunPiece extends Piece {
 
-  public SunPiece(Player player, Slot position, Team team) {
-    super(player, position, team);
-    Type chessType = Type.Sun;
+  public SunPiece(Player player, int r, int c) {
+    super(player, r, c);
   }
 
   @Override
   public void onMove(Slot position){
-    Slot currentPosition = super.getSlot();
-    // if (position got occupant) {
-    //   break;
-    // }
     if (isPlaceable(position)) {
-      currentPosition.setX(position.getX());
-      currentPosition.setY(position.getY());
-      return;
+      super.setPositionR(position.getRow());
+      super.setPositionC(position.getCol());
     }
   }
 
   @Override
   public boolean isPlaceable(Slot selectedPosition) {
-    Slot currentPosition = super.getSlot();
-
-    if ( ((Math.abs(selectedPosition.getX() - currentPosition.getX()) == 1) || (selectedPosition.getX() - currentPosition.getX() == 0)) &&
-         ((Math.abs(selectedPosition.getY() - currentPosition.getY()) == 1) || (selectedPosition.getY() - currentPosition.getY() == 0)) ) {
+    int distanceRow = super.distanceCounter(selectedPosition.getRow(), super.getPositionR());
+    int distanceCol = super.distanceCounter(selectedPosition.getCol(), super.getPositionC());
+    if ( (distanceRow == 1 || distanceRow == 0) && (distanceCol == 1 || distanceCol == 0) ) {
+        if (distanceRow == 1 && distanceCol == 1) {
+          if (super.getBoard().getSlotOccupied(selectedPosition.getRow() + 1, selectedPosition.getCol() + 1))
+            return false;
+        }
+        else if (distanceRow == 1){
+          if (super.getBoard().getSlotOccupied(selectedPosition.getRow() + 1, selectedPosition.getCol()))
+            return false;
+        }
+        else if (distanceCol == 1) {
+          if (super.getBoard().getSlotOccupied(selectedPosition.getRow(), selectedPosition.getCol() + 1))
+            return false;
+        }
         return true;
     }
     return false;
   }
+
 }

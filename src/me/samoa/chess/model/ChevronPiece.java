@@ -7,25 +7,23 @@ package me.samoa.chess.model;
 
 public class ChevronPiece extends Piece{
 
-  public ChevronPiece(Player player, Slot position, Team team) {
-    super(player, position, team);
-    Type chessType = Type.Chevron;
+  public ChevronPiece(Player player, int r, int c) {
+    super(player, r, c);
   }
 
   @Override
   public void onMove(Slot slot) {
     if(isPlaceable(slot)){
-      super.getSlot().setX(slot.getX());
-      super.getSlot().setY(slot.getY());
+      super.setPositionR(slot.getRow());
+      super.setPositionC(slot.getCol());
     }
   }
 
   @Override
   public boolean isPlaceable(Slot slot) {
     //current position
-    Slot position = super.getSlot();
-
-    if((slot.getX() == position.getX() - 2 || slot.getX() == position.getX() + 2) && slot.getY() == position.getY() + 1)
+    if((slot.getRow() == super.getPositionR() - 2 || slot.getRow() == super.getPositionR() + 2) && 
+        slot.getCol() == super.getPositionC() + 1)
       return true;
 
     return false;

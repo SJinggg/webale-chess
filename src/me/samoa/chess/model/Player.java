@@ -32,7 +32,11 @@ public class Player {
   }
 
   public void addPieces(Piece p) {
-    pieces.add(p);
+    this.pieces.add(p);
+  }
+
+  public Piece getPieces(){
+    return this.pieces.get(pieces.size() - 1);
   }
 
   public Team getTeam() {
@@ -40,7 +44,7 @@ public class Player {
   }
 
   public Team getOpponentTeam() {
-    return this.team == Team.BLUE ? Team.BLUE : Team.RED; 
+    return this.team == Team.BLUE ? Team.RED : Team.BLUE; 
   }
 
   public int getId() {

@@ -1,42 +1,43 @@
 package me.samoa.chess.model;
 
-public class Slot {
-  private int x, y;
-  private boolean occupied = false;
+public class Slot{
+  private int row, col;
+  Piece occupiedPiece;
 
-  public Slot(int x, int y) {
-    this.x = x;
-    this.y = y;
-  }  
-
-  public int getX() {
-    return x;
+  public Slot(int row, int col) {
+    this.row = row;
+    this.col = col;
   }
 
-  public int getY() {
-    return y;
+  public int getRow() {
+    return row;
   }
 
-  public void setX(int x) {
-    this.x = x;
+  public int getCol() {
+    return col;
   }
 
-  public void setY(int y) {
-    this.y = y;
+  public void setRow(int row) {
+    this.row = row;
   }
 
-  public void setOccupied(boolean occupied) {
-    this.occupied = occupied;
+  public void setCol(int col) {
+    this.col = col;
   }
-  
+
   public boolean isOccupied() {
-    return occupied;
+    return this.occupiedPiece == null;
   }
-  // pass in what? piece or slot? shd be piece, cuz need check player also, if it is enemy or not
-  // dahla we don't really have a way to check- where did occupy gooo
-  // why u dont continue aduh jiejie dont gooooooo
 
-  //aduh idk
+  public void setOccupiedPiece(Piece occupiedPiece) {
+    this.occupiedPiece = occupiedPiece;
+  }
+
+  public void removeOccupiedPiece(){
+    this.occupiedPiece = null;
+  }
   
-
+  public Piece getOccupiedPiece() {
+    return occupiedPiece;
+  }
 }

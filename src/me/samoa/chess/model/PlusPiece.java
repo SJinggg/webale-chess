@@ -1,48 +1,49 @@
 package me.samoa.chess.model;
 
 /**
- * The Plus moves in a straight line in ANY direction.
+ * The Plus moves in a straight line in ANCol direction.
  * It CANNOT skip over other pieces.
  */
 
 public class PlusPiece extends Piece{
   boolean vertical = false;
 
-  public PlusPiece(Player player, Slot position, Team team) {
-    super(player, position, team);
-    Type chessType = Type.Plus;
+  public PlusPiece(Player player, int r, int c) {
+    super(player, r, c);
   }
 
   @Override
   public void onMove(Slot slot) {
     if(isPlaceable(slot)){
       if(vertical) {
-        Slot prevSlot = super.getSlot();
-        super.getSlot().setX(slot.getX());
-        prevSlot.setOccupied(false);
+        super.setPositionR(slot.getRow());
       }
       else {
-        Slot prevSlot = super.getSlot();
-        super.getSlot().setY(slot.getY());
-        prevSlot.setOccupied(false);
+        super.setPositionC(slot.getCol());
       }
     }
   }
-
+  
   @Override 
-  public boolean isPlaceable(Slot selectedPosition) { 
-    Slot currentPosition = super.getSlot();
+  public boolean isPlaceable(Slot selectedPosition) {
 
-    if(currentPosition.getX() == selectedPosition.getX() && currentPosition.getY() != selectedPosition.getY()) {
-      int distance = Math.abs(currentPosition.getY()-selectedPosition.getY());
-      for(int i=0; i<distance; i++) {
-        
+    if(super.getPositionR() == selectedPosition.getRow() && super.getPositionC() != selectedPosition.getCol()) {
+      int distance = super.distanceCounter(super.getPositionC(), selectedPosition.getCol());
+      for(int i = 1; i < distance; i++){
+        if(super.getBoard().getSlotOccupied(selectedPosition.getRow(), selectedPosition.getCol() + i))
+          return false;
       }
       System.out.println("move vertically");
       vertical = true;
       return true;
     }
-    else if(currentPosition.getX() != selectedPosition.getX() && currentPosition.getY() == selectedPosition.getY()) {
+    else if(super.getPositionR() != selectedPosition.getRow() && super.getPositionC() == selectedPosition.getCol()) {
+      int distance = super.distanceCounter(super.getPositionR(), selectedPosition.getRow());
+      int multiplier = (super.getPositionR() > selectedPosition.getRow()) ? 1 : -1;
+      for(int i = 1; i < distance; i++){
+          if(super.getBoard().getSlotOccupied(selectedPosition.getRow() + (i * multiplier), selectedPosition.getCol()))
+            return false;
+      }
       System.out.println("move horizontally");
       vertical = false;
       return true;
