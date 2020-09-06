@@ -26,7 +26,7 @@ public class ChevronPiece extends Piece{
   public boolean isPlaceable(Slot slot) {
     //current position // ??
     if((slot.getRow() == super.getPositionR() - 2 || slot.getRow() == super.getPositionR() + 2) && 
-        (slot.getCol() == super.getPositionC() + 1 || slot.getCol() == super.getPositionC() - 1))x`
+        (slot.getCol() == super.getPositionC() + 1 || slot.getCol() == super.getPositionC() - 1))
       return true;
 
     return false;
