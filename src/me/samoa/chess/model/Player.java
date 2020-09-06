@@ -35,8 +35,8 @@ public class Player {
     this.pieces.add(p);
   }
 
-  public void getPieces(){
-    this.pieces.get(pieces.getSize()-1);
+  public Piece getPieces(){
+    return this.pieces.get(pieces.size() - 1);
   }
 
   public Team getTeam() {

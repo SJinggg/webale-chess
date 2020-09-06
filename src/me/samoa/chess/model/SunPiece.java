@@ -22,8 +22,8 @@ public class SunPiece extends Piece {
 
   @Override
   public boolean isPlaceable(Slot selectedPosition) {
-    int distanceRow = super.distanceCounter(selectedPosition.getRow() - super.getPositionR());
-    int distanceCol = super.distanceCounter(selectedPosition.getCol() - super.getPositionC());
+    int distanceRow = super.distanceCounter(selectedPosition.getRow(), super.getPositionR());
+    int distanceCol = super.distanceCounter(selectedPosition.getCol(), super.getPositionC());
     if ( (distanceRow == 1 || distanceRow == 0) && (distanceCol == 1 || distanceCol == 0) ) {
         if (distanceRow == 1 && distanceCol == 1) {
           if (super.getBoard().getSlotOccupied(selectedPosition.getRow() + 1, selectedPosition.getCol() + 1))

@@ -30,7 +30,7 @@ public class Board{
     return slots[row][col].isOccupied();
   }
 
-  public void setSlotOccupiedPiece(Piece p){
+  public void setSlotOccupiedPiece(Piece p, int row, int col){
     slots[row][col].setOccupiedPiece(p);
   }
 }

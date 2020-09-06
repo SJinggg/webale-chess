@@ -32,11 +32,11 @@ public abstract class Piece {
     return GameManager.getInstance().getBoard();
   }
 
-  public synchronized int setPositionR(int r){
+  public synchronized void setPositionR(int r){
     this.positionR = r;
   }
 
-  public synchronized int setPositionC(int c){
+  public synchronized void setPositionC(int c){
     this.positionC = c;
   }
 

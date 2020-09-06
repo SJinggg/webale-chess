@@ -28,27 +28,27 @@ public class GameManager {
       int row = (i.getPlayerName().equals("bluePlayer")) ? 0 : boardHeight-1;
 
       i.addPieces(new SunPiece(i, row, 3));
-      board.setSlotOccupiedPiece(i.getPieces());
+      board.setSlotOccupiedPiece(i.getPieces(), row, 3);
 
       i.addPieces(new ChevronPiece(i, row, 2));
-      board.setSlotOccupiedPiece(i.getPieces());
+      board.setSlotOccupiedPiece(i.getPieces(), row, 2);
       i.addPieces(new ChevronPiece(i, row, 4));
-      board.setSlotOccupiedPiece(i.getPieces());
+      board.setSlotOccupiedPiece(i.getPieces(), row, 4);
 
       i.addPieces(new TrianglePiece(i, row, 1));
-      board.setSlotOccupiedPiece(i.getPieces());
+      board.setSlotOccupiedPiece(i.getPieces(), row, 1);
       i.addPieces(new TrianglePiece(i, row, 5));
-      board.setSlotOccupiedPiece(i.getPieces());
+      board.setSlotOccupiedPiece(i.getPieces(), row, 5);
 
       i.addPieces(new PlusPiece(i, row, 0));
-      board.setSlotOccupiedPiece(i.getPieces());
+      board.setSlotOccupiedPiece(i.getPieces(), row, 0);
       i.addPieces(new PlusPiece(i, row, 6));
-      board.setSlotOccupiedPiece(i.getPieces());
+      board.setSlotOccupiedPiece(i.getPieces(), row, 6);
 
       row = (i.getPlayerName().equals("bluePlayer")) ? (row += 1) : (row -= 1);
       for(int j = 0; j < 7; j++){
         i.addPieces(new ArrowPiece(i, row, j++));
-        board.setSlotOccupiedPiece(i.getPieces());
+        board.setSlotOccupiedPiece(i.getPieces(), row, j);
       }
     } 
   }

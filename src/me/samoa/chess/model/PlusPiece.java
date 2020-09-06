@@ -28,7 +28,7 @@ public class PlusPiece extends Piece{
   public boolean isPlaceable(Slot selectedPosition) {
 
     if(super.getPositionR() == selectedPosition.getRow() && super.getPositionC() != selectedPosition.getCol()) {
-      int distance = super.distanceCounter(super.getPositionC() - selectedPosition.getCol());
+      int distance = super.distanceCounter(super.getPositionC(), selectedPosition.getCol());
       for(int i = 1; i < distance; i++){
         if(super.getBoard().getSlotOccupied(selectedPosition.getRow(), selectedPosition.getCol() + i))
           return false;
@@ -38,7 +38,7 @@ public class PlusPiece extends Piece{
       return true;
     }
     else if(super.getPositionR() != selectedPosition.getRow() && super.getPositionC() == selectedPosition.getCol()) {
-      int distance = super.distanceCounter(super.getPositionR() - selectedPosition.getRow());
+      int distance = super.distanceCounter(super.getPositionR(), selectedPosition.getRow());
       int multiplier = (super.getPositionR() > selectedPosition.getRow()) ? 1 : -1;
       for(int i = 1; i < distance; i++){
           if(super.getBoard().getSlotOccupied(selectedPosition.getRow() + (i * multiplier), selectedPosition.getCol()))

@@ -2,8 +2,8 @@ package me.samoa.chess.model;
 
 public class TrianglePiece extends Piece{
 
-  public TrianglePiece(Player player, Slot position, Team team) {
-    super(player, position, team);
+  public TrianglePiece(Player player, int r, int c) {
+    super(player, r, c);
   }
 
   @Override
@@ -17,11 +17,11 @@ public class TrianglePiece extends Piece{
   }
 
   @Override
-  public boolean isPlaceable(Slot selectedposition) {
+  public boolean isPlaceable(Slot selectedPosition) {
     int multiplier = (super.getPositionR() > selectedPosition.getRow()) ? 1 : -1;
-    int dist = super.distanceCounter(super.getPositionR() - selectedposition.getRow())
+    int dist = super.distanceCounter(super.getPositionR(), selectedPosition.getRow());
 
-    if(dist == super.distanceCounter(super.getPositionC() - selectedposition.getCol())) {
+    if(dist == super.distanceCounter(super.getPositionC(), selectedPosition.getCol())) {
       for(int i = 0; i < dist; i++){
         if(super.getBoard().getSlotOccupied(selectedPosition.getRow() + (i * multiplier), selectedPosition.getCol() + (i * multiplier)))
           return false;
