@@ -4,6 +4,7 @@ public abstract class Piece {
 
   private Player owner;
   private int positionR, positionC;
+  private boolean isEaten = false;
   
   // rmb to take out if useless
   public enum Type {
@@ -38,6 +39,12 @@ public abstract class Piece {
 
   public synchronized void setPositionC(int c){
     this.positionC = c;
+  }
+
+  public synchronized void setEaten() {
+    this.positionR = null;
+    this.positionC = null;
+    this.isEaten = true;
   }
 
   public int distanceCounter(int num1, int num2){

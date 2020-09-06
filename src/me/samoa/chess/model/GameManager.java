@@ -54,14 +54,14 @@ public class GameManager {
   }
 
   public void movement(Piece selectedPiece, Slot targetDest) {
-      if(selectedPiece.getPlayer().getTeam() == getCurrentPlayer().getTeam()){
-        if(!targetDest.isOccupied()){
-          selectedPiece.onMove(targetDest);
-        }
-        else if(targetDest.getOccupiedPiece().getPlayer().getTeam() == selectedPiece.getPlayer().getOpponentTeam()){
-          selectedPiece.onMove(targetDest);
-        }
-      } 
+    if(selectedPiece.getPlayer().getTeam() == getCurrentPlayer().getTeam()){
+      if(!targetDest.isOccupied()){
+        selectedPiece.onMove(targetDest);
+      }
+      else if(targetDest.getOccupiedPiece().getPlayer().getTeam() == selectedPiece.getPlayer().getOpponentTeam()){
+        selectedPiece.onMove(targetDest);
+      }
+    } 
   }
 
   public Board getBoard() {

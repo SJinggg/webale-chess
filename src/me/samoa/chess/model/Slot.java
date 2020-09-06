@@ -26,13 +26,18 @@ public class Slot{
   }
 
   public boolean isOccupied() {
-    return this.occupiedPiece == null;
+    return this.occupiedPiece != null;
+    // **********************************************
+    // if it is Occupied means when occupiedPiece is not null then return true
+    // return this.occupiedPiece == null; <-- ori code
   }
 
   public void setOccupiedPiece(Piece occupiedPiece) {
     this.occupiedPiece = occupiedPiece;
   }
 
+  //********************************
+  // why do we need this when we can just use setOccupiedPiece(null)
   public void removeOccupiedPiece(){
     this.occupiedPiece = null;
   }
