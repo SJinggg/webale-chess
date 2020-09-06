@@ -10,9 +10,8 @@ package me.samoa.chess.model;
 public class ArrowPiece extends Piece {
   private boolean reachEnd = false; //when will this become true?
 
-  public ArrowPiece(Player player, Slot position, Team team) {
-    super(player, position, team);
-    Type chessType = Type.Arrow;
+  public ArrowPiece(Player player, int r, int c) {
+    super(player, r, c);
   }
 
   @Override
@@ -23,25 +22,34 @@ public class ArrowPiece extends Piece {
      * put the piece on the slot position if the move valid
      */
     if(isPlaceable(slot)){
-      super.getSlot().setX(slot.getX());
+      super.setPositionR(slot.getRow());
     } 
   }
 
   @Override
   public boolean isPlaceable(Slot slot) {
-    //current position
-    Slot position = super.getSlot();
     //original position selected
-    if ((slot.getX() == position.getX()) || (slot.getX() == position.getX())) {
+    if ((super.getPositionR() == slot.getRow()) || (super.getPositionC() == slot.getCol())) {
       //display message? current position selected
+      System.out.println("The original position has been selected");
       return false;
     }
-    //moving forward, check if the position is inbetween two steps
-    else if ((slot.getX() <= position.getX() - 2) && !reachEnd) {
+    //moving forward, check if the position is in between two steps              
+    else if ((slot.getRow() <= super.getPositionR() - 2) && (super.getPlayer().teamIdentify(Team.RED) || reachEnd)) {
+      int dist = super.distanceCounter(super.getPositionR() - slot.getRow());
+      for(int i = 1; i < dist; i++){
+        if (super.getBoard().getSlotOccupied(slot.getRow() + i, slot.getCol()))
+          return false
+      }
       return true;
     }
     //Head back after reached edge, check if the position is not more than two steps far from original position
-    else if ((slot.getX() <= position.getX() + 2) && reachEnd) {
+    else if ((slot.getRow() <= super.getPositionR() + 2) && (super.getPlayer().teamIdentify(Team.BLUE) || reachEnd)) {
+      int dist = super.distanceCounter(slot.getRow() - super.getPositionR());
+      for(int i = 1; i < dist; i++){
+        if !(super.getBoard().getSlotOccupied(slot.getRow() - i, slot.getCol()))
+          return false
+      }
       return true;
     }
     return false;
