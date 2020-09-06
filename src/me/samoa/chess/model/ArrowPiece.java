@@ -32,13 +32,13 @@ public class ArrowPiece extends Piece {
 
   @Override
   public boolean isPlaceable(Slot slot) {
-    /*
+    /**
     * Functions: (1)check if any pieces along the path (max 2 steps), (2)check if destination slots is occupied
     * TODO: 
     * (1)- if red piece not yet reach end or blue piece reached end --> check '2' steps forwards
     * (1)- if blue piece not yet reach end or red piece reached end --> check '2' steps backwards
     * (2)- if destination occupied --> check if it is opponent or ally
-    **/
+    */
     else if((super.getPlayer().teamIdentify(Team.RED) && !reachEnd) || (super.getPlayer().teamIdentify(Team.BLUE) && reachEnd)) {
       if(slot.getRow() <= super.getPositionR() - 2) {
         int dist = super.distanceCounter(super.getPositionR(), slot.getRow());
