@@ -35,12 +35,6 @@ public class Slot{
   public void setOccupiedPiece(Piece occupiedPiece) {
     this.occupiedPiece = occupiedPiece;
   }
-
-  //********************************
-  // why do we need this when we can just use setOccupiedPiece(null)
-  public void removeOccupiedPiece(){
-    this.occupiedPiece = null;
-  }
   
   public Piece getOccupiedPiece() {
     return occupiedPiece;
