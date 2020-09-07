@@ -17,6 +17,8 @@ public class ChevronPiece extends Piece{
   @Override
   public void onMove(Slot slot) {
     if(isPlaceable(slot)){
+      if(super.getBoard().getSlotOccupied(slot.getRow(), slot.getCol()))
+        slot.getOccupiedPiece().setEaten();
       super.setPositionR(slot.getRow());
       super.setPositionC(slot.getCol());
     }
@@ -25,9 +27,21 @@ public class ChevronPiece extends Piece{
   @Override
   public boolean isPlaceable(Slot slot) {
     //current position // ??
-    if((slot.getRow() == super.getPositionR() - 2 || slot.getRow() == super.getPositionR() + 2) && 
-        (slot.getCol() == super.getPositionC() + 1 || slot.getCol() == super.getPositionC() - 1))
-      return true;
+    if((Math.abs(slot.getRow() - super.getPositionR()) == 2 && Math.abs(slot.getCol() - super.getPositionC()) == 1) ||
+      (Math.abs(slot.getRow() - super.getPositionR()) == 1 && Math.abs(slot.getCol() - super.getPositionC()) == 2)) {
+        if(super.getBoard().getSlotOccupied(slot.getRow(), slot.getCol())) {
+          if(super.getBoard().getSlotOccupiedPiece(slot.getRow(), slot.getCol()).getPlayer().teamIndentify(super.getPlayer().getTeam()))
+            return false;
+        }
+        return true;
+      }
+
+    //*****************************************
+    // ori code
+    // this code does not support moving two columns(left/right) and one row(up/down)
+    // if((slot.getRow() == super.getPositionR() - 2 || slot.getRow() == super.getPositionR() + 2) && 
+    //     (slot.getCol() == super.getPositionC() + 1 || slot.getCol() == super.getPositionC() - 1))
+    //   return true;
 
     return false;
   }

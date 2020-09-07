@@ -23,7 +23,7 @@ public class ArrowPiece extends Piece {
      * if there is an opponent piece at the destination slot, it captures/eats it
      */
     if(isPlaceable(slot)){
-      if(slot.getBoard().getSlotOccupied(slot.getPositionR(), slot.getPositionC())) {
+      if(super.getBoard().getSlotOccupied(slot.getPositionR(), slot.getPositionC())) {
         slot.getOccupiedPiece().setEaten();
       }
       super.setPositionR(slot.getRow());
