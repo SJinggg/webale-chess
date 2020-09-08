@@ -24,7 +24,11 @@ public class GameGUI extends JFrame{
     endButton = new JButton("End");
     saveButton = new JButton("Save");
     
-    super.setMenuBar(menu);
+    menu.add(startButton);
+    menu.add(endButton);
+    menu.add(saveButton);
+
+    super.setJMenuBar(menu);
 
     setVisible(true);
     setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -63,8 +63,6 @@ public class GameManager {
           Piece previousPiece = targetDest.getOccupiedPiece();
           board.removeSlotOccupation(selectedPiece.getPositionR(), selectedPiece.getPositionC());
           selectedPiece.onMove(targetDest);
-          // manyi your isEaten function // like this? i added isEaten and setEaten to Piece class // ithink nice can
-          // what to do next?
           previousPiece.setEaten();
         }
       } 
