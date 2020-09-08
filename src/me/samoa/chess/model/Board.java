@@ -29,11 +29,6 @@ public class Board{
   public boolean getSlotOccupied(int row, int col){
     return slots[row][col].isOccupied();
   }
-<<<<<<< HEAD
-
-  public void setSlotOccupiedPiece(Piece p, int row, int col){
-    slots[row][col].setOccupiedPiece(p);
-=======
   
   public void setSlotOccupiedPiece(Piece p, int row, int col){
     slots[row][col].setOccupiedPiece(p);
@@ -41,6 +36,5 @@ public class Board{
 
   public void removeSlotOccupation(int row, int col){
     slots[row][col].setOccupiedPiece(null);
->>>>>>> f25093e10b8ff0fc68b8a123bc7f61ccb885e04a
   }
 }

@@ -8,10 +8,7 @@ public class GameManager {
   private static final GameState GameState = null;
   private static final me.samoa.chess.model.GameManager.GameState PLAY = null;
   private Player currentPlayer;
-<<<<<<< HEAD
-=======
   private Player winner;
->>>>>>> f25093e10b8ff0fc68b8a123bc7f61ccb885e04a
 
   public static GameManager getInstance() {
     if (instance == null) {
@@ -55,20 +52,6 @@ public class GameManager {
         board.setSlotOccupiedPiece(i.getPieces(), row, j);
       }
     } 
-<<<<<<< HEAD
-  }
-
-  public void movement(Piece selectedPiece, Slot targetDest) {
-      if(selectedPiece.getPlayer().getTeam() == getCurrentPlayer().getTeam()){
-        if(!targetDest.isOccupied()){
-          selectedPiece.onMove(targetDest);
-        }
-        else if(targetDest.getOccupiedPiece().getPlayer().getTeam() == selectedPiece.getPlayer().getOpponentTeam()){
-          selectedPiece.onMove(targetDest);
-        }
-      } 
-=======
->>>>>>> f25093e10b8ff0fc68b8a123bc7f61ccb885e04a
   }
 
   public void movement(Piece selectedPiece, Slot targetDest) {
