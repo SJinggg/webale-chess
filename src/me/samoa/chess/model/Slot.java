@@ -32,7 +32,7 @@ public class Slot{
   public void setOccupiedPiece(Piece occupiedPiece) {
     this.occupiedPiece = occupiedPiece;
   }
-  
+
   public Piece getOccupiedPiece() {
     return occupiedPiece;
   }

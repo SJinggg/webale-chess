@@ -19,7 +19,7 @@ public class GameManager {
 
   public enum GameState {
     PLAY, END
-  };
+  }
 
   public GameManager() { 
     board = new Board();
@@ -78,7 +78,11 @@ public class GameManager {
       return true;
     }
     return false;
-
+  } // here dun have { just now 0.0 // actually i dk those singleton blablabla eh xD but those UI stuff
+    // together more easier?
+    // try compile again i see xia 
+// saw? // how geh 0.0 gg die /kay
+// but hor it only error when erm how do i show u ... erm u click on me and see  i show u
   public Board getBoard() {
     return this.board;
   }

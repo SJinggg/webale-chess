@@ -12,7 +12,6 @@ public class Main {
       System.exit(1);
       return;
     }
-    System.exit(0);
     
   }
 

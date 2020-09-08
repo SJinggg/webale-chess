@@ -13,8 +13,13 @@ public class GameWindow implements Window {
 
   @Override
   public void open() {
-
+    new GameGUI();
+    /***
+     * 
+     * 
+     */
   }
+
 
   @Override
   public void close() {
