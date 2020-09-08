@@ -8,6 +8,7 @@ public class GameManager {
   private static final GameState GameState = null;
   private static final me.samoa.chess.model.GameManager.GameState PLAY = null;
   private Player currentPlayer;
+  private Player winner;
 
   public static GameManager getInstance() {
     if (instance == null) {
@@ -59,10 +60,26 @@ public class GameManager {
           selectedPiece.onMove(targetDest);
         }
         else if(targetDest.getOccupiedPiece().getPlayer().getTeam() == selectedPiece.getPlayer().getOpponentTeam()){
+          Piece previousPiece = targetDest.getOccupiedPiece();
+          board.removeSlotOccupation(selectedPiece.getPositionR(), selectedPiece.getPositionC());
           selectedPiece.onMove(targetDest);
+          // manyi your isEaten function // like this? i added isEaten and setEaten to Piece class // ithink nice can
+          // what to do next?
+          previousPiece.setEaten();
         }
       } 
   }
+
+  public boolean checkGameOver() { 
+    if(players[0].getPieces(Type.Sun).isEaten()){
+      this.winner = players[1];
+      return true;
+    }
+    else if(players[1].getPieces(Type.Sun).isEaten()){
+      this.winner = players[0];
+      return true;
+    }
+    return false;
 
   public Board getBoard() {
     return this.board;

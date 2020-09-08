@@ -9,6 +9,7 @@ public class ChevronPiece extends Piece{
 
   public ChevronPiece(Player player, int r, int c) {
     super(player, r, c);
+    type = Type.Chevron;
   }
 
   @Override
@@ -21,11 +22,11 @@ public class ChevronPiece extends Piece{
 
   @Override
   public boolean isPlaceable(Slot slot) {
-    //current position
-    if((slot.getRow() == super.getPositionR() - 2 || slot.getRow() == super.getPositionR() + 2) && 
-        slot.getCol() == super.getPositionC() + 1)
+    int distanceRow = super.distanceCounter(slot.getRow(), super.getPositionR());
+    int distanceCol = super.distanceCounter(slot.getCol(), super.getPositionC());
+    if((distanceRow == 2 && distanceCol == 1) || (distanceRow == 1 && distanceCol == 2)) {
       return true;
-
+    }
     return false;
   }
 }

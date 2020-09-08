@@ -26,15 +26,11 @@ public class Slot{
   }
 
   public boolean isOccupied() {
-    return this.occupiedPiece == null;
+    return this.occupiedPiece != null; // == or != //!-
   }
 
   public void setOccupiedPiece(Piece occupiedPiece) {
     this.occupiedPiece = occupiedPiece;
-  }
-
-  public void removeOccupiedPiece(){
-    this.occupiedPiece = null;
   }
   
   public Piece getOccupiedPiece() {
