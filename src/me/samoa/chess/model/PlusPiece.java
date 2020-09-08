@@ -30,8 +30,9 @@ public class PlusPiece extends Piece{
 
     if(super.getPositionR() == selectedPosition.getRow() && super.getPositionC() != selectedPosition.getCol()) {
       int distance = super.distanceCounter(super.getPositionC(), selectedPosition.getCol());
+      int multiplier = (super.getPositionC() > selectedPosition.getCol()) ? 1 : -1;
       for(int i = 1; i < distance; i++){
-        if(super.getBoard().getSlotOccupied(selectedPosition.getRow(), selectedPosition.getCol() + i))
+        if(super.getBoard().getSlotOccupied(selectedPosition.getRow(), selectedPosition.getCol() + (i * multiplier)))
           return false;
       }
       System.out.println("move vertically");
