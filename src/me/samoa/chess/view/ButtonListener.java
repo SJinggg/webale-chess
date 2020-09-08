@@ -9,11 +9,13 @@ public class ButtonListener implements MouseListener {
         JButton clicked = (JButton)evt.getSource();
 
         System.out.println(clicked.getName());
-        //perform movement here...? // listener not inside control 
+        //perform movement here...? // listener not inside control
+         
+        
     }
 
     public void mouseClicked(MouseEvent evt){}
     public void mouseEntered(MouseEvent evt){}
     public void mouseExited(MouseEvent evt){}
     public void mouseReleased(MouseEvent evt){}
-}d
+}

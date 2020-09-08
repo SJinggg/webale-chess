@@ -39,13 +39,14 @@ public class Player {
     return this.pieces.get(pieces.size() - 1);
   }
 
-  public Piece getPieces(Type type){
+  public ArrayList<Piece> getPieces(Type type){
+    ArrayList<Piece> getPieces = new ArrayList<>();
     for(Piece p: pieces){
       if(p.getType() == type){
-        return p;
+        getPieces.add(p);
       }
     }
-    return null;
+    return getPieces;
   }
 
   public Team getTeam() {

@@ -1,7 +1,7 @@
 package me.samoa.chess.model;
 
 /**
- * The Arrow piece can only move 1/2 steps forward at a time.
+ * The Arrow piece can only move 1 or 2 steps forward at a time.
  * If it reaches the end of the board, it turns around
  * and heads back to the other side.
  * It CANNOT skip over other pieces.
@@ -33,6 +33,7 @@ public class ArrowPiece extends Piece {
      */
     if(isPlaceable(slot)){
       super.setPositionR(slot.getRow());
+      this.checkReachEnd();
     } 
   }
 
@@ -46,6 +47,8 @@ public class ArrowPiece extends Piece {
     }
     //moving forward, check if the position is in between two steps              
     else if ((slot.getRow() <= super.getPositionR() - 2) && (super.getPlayer().teamIdentify(Team.RED) || reachEnd)) {
+      if((super.getPlayer().teamIdentify(Team.RED) && reachEnd))
+        return false;
       int dist = super.distanceCounter(super.getPositionR(), slot.getRow());
       for(int i = 1; i < dist; i++){
         if (super.getBoard().getSlotOccupied(slot.getRow() + i, slot.getCol()))
@@ -55,6 +58,8 @@ public class ArrowPiece extends Piece {
     }
     //Head back after reached edge, check if the position is not more than two steps far from original position
     else if ((slot.getRow() <= super.getPositionR() + 2) && (super.getPlayer().teamIdentify(Team.BLUE) || reachEnd)) {
+      if((super.getPlayer().teamIdentify(Team.BLUE) && reachEnd))
+        return false;
       int dist = super.distanceCounter(slot.getRow(), super.getPositionR());
       for(int i = 1; i < dist; i++){
         if (super.getBoard().getSlotOccupied(slot.getRow() - i, slot.getCol()))
@@ -62,7 +67,6 @@ public class ArrowPiece extends Piece {
       }
       return true;
     }
-    this.checkReachEnd();
     return false;
   }
 }
