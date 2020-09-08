@@ -10,6 +10,7 @@ public class PlusPiece extends Piece{
 
   public PlusPiece(Player player, int r, int c) {
     super(player, r, c);
+    type = Type.Plus;
   }
 
   @Override

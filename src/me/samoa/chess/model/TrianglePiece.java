@@ -4,6 +4,7 @@ public class TrianglePiece extends Piece{
 
   public TrianglePiece(Player player, int r, int c) {
     super(player, r, c);
+    type = Type.Triangle;
   }
 
   @Override

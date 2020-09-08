@@ -33,4 +33,8 @@ public class Board{
   public void setSlotOccupiedPiece(Piece p, int row, int col){
     slots[row][col].setOccupiedPiece(p);
   }
+
+  public void removeSlotOccupation(int row, int col){
+    slots[row][col].setOccupiedPiece(null);
+  }
 }

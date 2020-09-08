@@ -5,11 +5,7 @@ public abstract class Piece {
   private Player owner;
   private int positionR, positionC;
   private boolean isEaten = false;
-  
-  // rmb to take out if useless
-  public enum Type {
-    Arrow, Chevron, Plus, Triangle, Sun
-  }
+  protected Type type;
 
   public Piece (Player player, int r, int c) { 
     this.owner = player;
@@ -33,6 +29,10 @@ public abstract class Piece {
     return GameManager.getInstance().getBoard();
   }
 
+  public boolean isEaten() {
+    return this.isEaten;
+  }
+
   public synchronized void setPositionR(int r){
     this.positionR = r;
   }
@@ -42,14 +42,17 @@ public abstract class Piece {
   }
 
   public synchronized void setEaten() {
-    this.positionR = null;
-    this.positionC = null;
     this.isEaten = true;
+    this.positionR = -1;
+    this.positionC = -1;
   }
 
   public int distanceCounter(int num1, int num2){
     return Math.abs(num1 - num2);
+  }
 
+  public Type getType(){
+    return type;
   }
   
   public abstract void onMove(Slot slot);

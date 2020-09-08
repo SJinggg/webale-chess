@@ -9,6 +9,7 @@ public class ChevronPiece extends Piece{
 
   public ChevronPiece(Player player, int r, int c) {
     super(player, r, c);
+    type = Type.Chevron;
   }
 
   @Override

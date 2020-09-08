@@ -12,6 +12,16 @@ public class ArrowPiece extends Piece {
 
   public ArrowPiece(Player player, int r, int c) {
     super(player, r, c);
+    type = Type.Arrow;
+  }
+
+  public void checkReachEnd(){
+    if (super.getPlayer().teamIdentify(Team.RED) && super.getPositionR() == 0 ){
+      this.reachEnd = true;
+    }
+    else if (super.getPlayer().teamIdentify(Team.BLUE) && super.getPositionR() == 7 ){
+      this.reachEnd = true;
+    }
   }
 
   @Override
@@ -52,6 +62,7 @@ public class ArrowPiece extends Piece {
       }
       return true;
     }
+    this.checkReachEnd();
     return false;
   }
 }
