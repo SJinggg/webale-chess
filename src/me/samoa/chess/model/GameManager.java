@@ -1,5 +1,7 @@
 package me.samoa.chess.model;
 
+import java.util.ArrayList;
+
 public class GameManager {
   private Board board;
   public static GameManager instance;
@@ -54,26 +56,45 @@ public class GameManager {
   }
 
   public void movement(Piece selectedPiece, Slot targetDest) {
-      if(selectedPiece.getPlayer().getTeam() == getCurrentPlayer().getTeam()){
-        if(!targetDest.isOccupied()){
-          selectedPiece.onMove(targetDest);
+    if(selectedPiece.getPlayer().getTeam() == getCurrentPlayer().getTeam()){
+      if(!targetDest.isOccupied()){
+        selectedPiece.onMove(targetDest);
+      }
+      else if(targetDest.getOccupiedPiece().getPlayer().getTeam() == selectedPiece.getPlayer().getOpponentTeam()){
+        Piece previousPiece = targetDest.getOccupiedPiece();
+        selectedPiece.onMove(targetDest);
+        board.removeSlotOccupation(selectedPiece.getPositionR(), selectedPiece.getPositionC());
+        previousPiece.setEaten();
+      }
+    }
+    currentPlayer.addTurn();
+    if(checkSwitch()) {
+      for(Player p: players){
+        // random piece for temporary usage
+        Piece temp = new ArrowPiece(new Player("", p.getTeam()), -1, -1);
+        ArrayList<Piece> tempPlus = p.getPieces(Type.Plus);
+        ArrayList<Piece> tempTriangle = p.getPieces(Type.Triangle);
+        for(int i = 0; i < 2; i++){
+          temp.setPositionR(tempPlus.get(i).getPositionR());
+          temp.setPositionC(tempPlus.get(i).getPositionC());
+          tempPlus.get(i).setPositionR(tempTriangle.get(i).getPositionR());
+          tempPlus.get(i).setPositionC(tempTriangle.get(i).getPositionC());
+          tempTriangle.get(i).setPositionR(temp.getPositionR());
+          tempTriangle.get(i).setPositionC(temp.getPositionC());
         }
-        else if(targetDest.getOccupiedPiece().getPlayer().getTeam() == selectedPiece.getPlayer().getOpponentTeam()){
-          Piece previousPiece = targetDest.getOccupiedPiece();
-          board.removeSlotOccupation(selectedPiece.getPositionR(), selectedPiece.getPositionC());
-          selectedPiece.onMove(targetDest);
-          previousPiece.setEaten();
-        }
-      } 
+      }
+    }
   }
 
-  public boolean checkGameOver() { 
-    if(players[0].getPieces(Type.Sun).isEaten()){
+  public boolean checkGameOver() {
+    Piece temp0 = players[0].getPieces(Type.Sun).get(0);
+    Piece temp1 = players[0].getPieces(Type.Sun).get(0);
+    if(temp0.isEaten()){
       this.winner = players[1];
       this.gameState = GameState.END;
       return true;
     }
-    else if(players[1].getPieces(Type.Sun).isEaten()){
+    else if(temp1.isEaten()){
       this.winner = players[0];
       this.gameState = GameState.END;
       return true;
@@ -83,6 +104,13 @@ public class GameManager {
 
   public Board getBoard() {
     return this.board;
+  }
+
+  public boolean checkSwitch() {
+    if (players[0].getTurn() % 2 == 0 && players[1].getTurn() % 2 == 0){
+      return true;
+    }
+    return false;
   }
 
   public Player getCurrentPlayer() {
