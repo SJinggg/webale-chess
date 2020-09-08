@@ -4,11 +4,9 @@ public class GameManager {
   private Board board;
   public static GameManager instance;
   private Player[] players = {new Player("redPlayer", Team.RED), new Player("bluePlayer", Team.BLUE)};
-  private Team turn = Team.RED;
-  private static final GameState GameState = null;
-  private static final me.samoa.chess.model.GameManager.GameState PLAY = null;
   private Player currentPlayer;
   private Player winner;
+  private GameState gameState;
 
   public static GameManager getInstance() {
     if (instance == null) {
@@ -22,6 +20,7 @@ public class GameManager {
   };
 
   public GameManager() { 
+    this.gameState = GameState.PLAY;
     board = new Board();
     int boardHeight = board.getBoardHeight();
 
@@ -71,13 +70,16 @@ public class GameManager {
   public boolean checkGameOver() { 
     if(players[0].getPieces(Type.Sun).isEaten()){
       this.winner = players[1];
+      this.gameState = GameState.END;
       return true;
     }
     else if(players[1].getPieces(Type.Sun).isEaten()){
       this.winner = players[0];
+      this.gameState = GameState.END;
       return true;
     }
     return false;
+  }
 
   public Board getBoard() {
     return this.board;
@@ -87,15 +89,19 @@ public class GameManager {
     return currentPlayer;
   }
 
-  public String getTurn() {
-    return turn.toString();
-  }
-
   public void nextTurn() {
-    if (GameManager.GameState == PLAY) {
+    if (this.gameState == GameState.PLAY) {
       Player player = getCurrentPlayer();
       player.addTurn();
     }
+  }
+
+  public Player getWinner() {
+    return this.winner;
+  }
+
+  public GameState getGameState() {
+    return this.gameState;
   }
 
 }

@@ -24,6 +24,10 @@ public class ArrowPiece extends Piece {
     }
   }
 
+  public boolean isReachEnd() {
+    return reachEnd;
+  }
+
   @Override
   public void onMove(Slot slot) {
     /** 
@@ -33,6 +37,7 @@ public class ArrowPiece extends Piece {
      */
     if(isPlaceable(slot)){
       super.setPositionR(slot.getRow());
+      this.checkReachEnd();
     } 
   }
 
@@ -46,6 +51,8 @@ public class ArrowPiece extends Piece {
     }
     //moving forward, check if the position is in between two steps              
     else if ((slot.getRow() <= super.getPositionR() - 2) && (super.getPlayer().teamIdentify(Team.RED) || reachEnd)) {
+      if((super.getPlayer().teamIdentify(Team.RED) && reachEnd))
+        return false;
       int dist = super.distanceCounter(super.getPositionR(), slot.getRow());
       for(int i = 1; i < dist; i++){
         if (super.getBoard().getSlotOccupied(slot.getRow() + i, slot.getCol()))
@@ -62,7 +69,6 @@ public class ArrowPiece extends Piece {
       }
       return true;
     }
-    this.checkReachEnd();
     return false;
   }
 }
