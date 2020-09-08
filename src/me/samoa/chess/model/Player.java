@@ -39,6 +39,15 @@ public class Player {
     return this.pieces.get(pieces.size() - 1);
   }
 
+  public Piece getPieces(Type type){
+    for(Piece p: pieces){
+      if(p.getType() == type){
+        return p;
+      }
+    }
+    return null;
+  }
+
   public Team getTeam() {
     return team;
   }

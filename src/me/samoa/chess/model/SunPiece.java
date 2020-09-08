@@ -10,6 +10,7 @@ public class SunPiece extends Piece {
 
   public SunPiece(Player player, int r, int c) {
     super(player, r, c);
+    type = Type.Sun;
   }
 
   @Override
