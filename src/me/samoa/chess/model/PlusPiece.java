@@ -1,7 +1,7 @@
 package me.samoa.chess.model;
 
 /**
- * The Plus moves in a straight line in ANCol direction.
+ * The Plus piece moves in a straight line in ANY direction.
  * It CANNOT skip over other pieces.
  */
 

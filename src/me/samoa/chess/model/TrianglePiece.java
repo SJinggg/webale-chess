@@ -1,5 +1,10 @@
 package me.samoa.chess.model;
 
+/**
+ * The Triangle piece can move any number of steps diagonally.
+ * It CANNOT skip over other pieces.
+ */
+
 public class TrianglePiece extends Piece{
 
   public TrianglePiece(Player player, int r, int c) {

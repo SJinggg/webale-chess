@@ -29,13 +29,10 @@ public abstract class Piece {
     return GameManager.getInstance().getBoard();
   }
 
-<<<<<<< HEAD
-=======
   public boolean isEaten() {
     return this.isEaten;
   }
 
->>>>>>> f25093e10b8ff0fc68b8a123bc7f61ccb885e04a
   public synchronized void setPositionR(int r){
     this.positionR = r;
   }
@@ -44,11 +41,6 @@ public abstract class Piece {
     this.positionC = c;
   }
 
-<<<<<<< HEAD
-  public int distanceCounter(int num1, int num2){
-    return Math.abs(num1 - num2);
-
-=======
   public synchronized void setEaten() {
     this.isEaten = true;
     this.positionR = -1;
@@ -61,7 +53,6 @@ public abstract class Piece {
 
   public Type getType(){
     return type;
->>>>>>> f25093e10b8ff0fc68b8a123bc7f61ccb885e04a
   }
   
   public abstract void onMove(Slot slot);
