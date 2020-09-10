@@ -29,7 +29,7 @@ public class Board{
   public boolean getSlotOccupied(int row, int col){
     return slots[row][col].isOccupied();
   }
-  
+
   public void setSlotOccupiedPiece(Piece p, int row, int col){
     slots[row][col].setOccupiedPiece(p);
   }

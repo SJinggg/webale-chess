@@ -1,9 +1,11 @@
 package me.samoa.chess.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * The Sun piece can move one step in any direction.
- * It CANNOT skip over other pieces.
- * The player who eats the Sun piece of the opposing team first wins.
+ * The Sun piece can move one step in any direction. It CANNOT skip over other
+ * pieces. The player who eats the Sun piece of the opposing team first wins.
  */
 
 public class SunPiece extends Piece {
@@ -14,33 +16,43 @@ public class SunPiece extends Piece {
   }
 
   @Override
-  public void onMove(Slot position){
-    if (isPlaceable(position)) {
-      super.setPositionR(position.getRow());
-      super.setPositionC(position.getCol());
-    }
-  }
+  public void onTurn(int turn) {}
 
   @Override
-  public boolean isPlaceable(Slot selectedPosition) {
-    int distanceRow = super.distanceCounter(selectedPosition.getRow(), super.getPositionR());
-    int distanceCol = super.distanceCounter(selectedPosition.getCol(), super.getPositionC());
-    if ( (distanceRow == 1 || distanceRow == 0) && (distanceCol == 1 || distanceCol == 0) ) {
-        if (distanceRow == 1 && distanceCol == 1) {
-          if (super.getBoard().getSlotOccupied(selectedPosition.getRow() + 1, selectedPosition.getCol() + 1))
-            return false;
-        }
-        else if (distanceRow == 1){
-          if (super.getBoard().getSlotOccupied(selectedPosition.getRow() + 1, selectedPosition.getCol()))
-            return false;
-        }
-        else if (distanceCol == 1) {
-          if (super.getBoard().getSlotOccupied(selectedPosition.getRow(), selectedPosition.getCol() + 1))
-            return false;
-        }
-        return true;
-    }
-    return false;
-  }
+  public void onMove(Slot slot) {}
 
+  @Override
+  public List<Slot> getAllPlaceableSlot() {
+    ArrayList<Slot> placeableSlots = new ArrayList<>();
+
+
+    // for reference
+    // placeableSlots.add(getBoard().getSlot(this.getPositionR() + 1, this.getPositionC() - 1));
+    // placeableSlots.add(getBoard().getSlot(this.getPositionR() + 1, this.getPositionC()));
+    // placeableSlots.add(getBoard().getSlot(this.getPositionR() + 1, this.getPositionC() + 1));
+    // placeableSlots.add(getBoard().getSlot(this.getPositionR(), this.getPositionC() + 1));
+    // placeableSlots.add(getBoard().getSlot(this.getPositionR() - 1, this.getPositionC() + 1));
+    // placeableSlots.add(getBoard().getSlot(this.getPositionR() - 1, this.getPositionC()));
+    // placeableSlots.add(getBoard().getSlot(this.getPositionR() - 1, this.getPositionC() - 1));
+    // placeableSlots.add(getBoard().getSlot(this.getPositionR(), this.getPositionC() - 1));
+
+    for (int i = -1; i < 2; i++) {
+      for (int j = -1; j < 2; j++) {
+        if (i == 0 && j == 0) continue;
+        int row = this.getPositionR() + i;
+        int col = this.getPositionC() + j;
+
+        if ((row >= getBoard().getBoardHeight() || col >= getBoard().getBoardWidth() || row < 0 || col < 0)) continue;
+        Slot slot = getBoard().getSlot(row, col);
+        if (!slot.isOccupied()) {
+          placeableSlots.add(slot);
+          continue;
+        }
+        if (slot.getOccupiedPiece().getPlayer().getOpponentTeam() == getPlayer().getTeam()) {
+          placeableSlots.add(slot);
+        }
+      }
+    }
+    return placeableSlots;
+  }
 }

@@ -1,6 +1,7 @@
 package me.samoa.chess.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
 
@@ -13,6 +14,7 @@ public class Player {
     this.playerName = playerName;
     this.team = team;
     pieces = new ArrayList<>();
+    this.turn = 0;
   }
 
   public boolean teamIdentify(Team team) {
@@ -23,30 +25,30 @@ public class Player {
     return playerName;
   }
 
-  public int getTurn() {
-    return turn;
-  }
-  
-  public void addTurn() {
-    this.turn += 1;
+  public void nextTurn() {
+    this.turn++;
+    for (Piece piece : this.pieces) {
+      if (piece.isEaten()) continue;
+      piece.onTurn(this.turn);
+    }
   }
 
-  public void addPieces(Piece p) {
+  public Piece addPieces(Piece p) {
     this.pieces.add(p);
+    return p;
   }
 
-  public Piece getPieces(){
-    return this.pieces.get(pieces.size() - 1);
+  public List<Piece> getPieces(){
+    return this.pieces;
   }
 
-  public ArrayList<Piece> getPieces(Type type){
-    ArrayList<Piece> getPieces = new ArrayList<>();
+  public SunPiece getSunPiece(){
     for(Piece p: pieces){
-      if(p.getType() == type){
-        getPieces.add(p);
+      if(p.getType() == Type.Sun){
+        return (SunPiece)p;
       }
     }
-    return getPieces;
+    return null;
   }
 
   public Team getTeam() {
@@ -55,9 +57,5 @@ public class Player {
 
   public Team getOpponentTeam() {
     return this.team == Team.BLUE ? Team.RED : Team.BLUE; 
-  }
-
-  public int getId() {
-    return (this.team == Team.RED) ? 0 : 1;
   }
 }

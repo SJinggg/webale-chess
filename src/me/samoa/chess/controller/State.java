@@ -18,9 +18,9 @@ public abstract class State {
 
   public abstract GameStatusInfo onStart();
 
-  public abstract List<MovementInfo> onSelect(int x, int y);
+  public abstract List<MovementInfo> onSelect(int row, int col) ;
 
-  public abstract List<PositionInfo> onMove(int x, int y);
+  public abstract List<PositionInfo> onMove(int row, int col) ;
 
   public abstract GameStatusInfo onCheck();
 

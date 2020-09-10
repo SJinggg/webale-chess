@@ -2,7 +2,7 @@ package me.samoa.chess.model;
 
 public class Slot{
   private int row, col;
-  Piece occupiedPiece;
+  private Piece occupiedPiece;
 
   public Slot(int row, int col) {
     this.row = row;
@@ -17,6 +17,10 @@ public class Slot{
     return col;
   }
 
+  public boolean equals(Slot otherSlot) {
+    return (this.row == otherSlot.row) && (this.col == otherSlot.col);
+  }
+
   public void setRow(int row) {
     this.row = row;
   }
@@ -26,11 +30,15 @@ public class Slot{
   }
 
   public boolean isOccupied() {
-    return this.occupiedPiece != null; // == or != //!-
+    return this.occupiedPiece != null;
   }
 
   public void setOccupiedPiece(Piece occupiedPiece) {
     this.occupiedPiece = occupiedPiece;
+    if (occupiedPiece != null) {
+      occupiedPiece.setPositionC(this.col);
+      occupiedPiece.setPositionR(this.row); 
+    }
   }
 
   public Piece getOccupiedPiece() {

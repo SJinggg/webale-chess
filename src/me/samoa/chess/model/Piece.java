@@ -1,5 +1,7 @@
 package me.samoa.chess.model;
 
+import java.util.List;
+
 public abstract class Piece {
 
   private Player owner;
@@ -12,7 +14,7 @@ public abstract class Piece {
     this.positionR = r;
     this.positionC = c;
   }
-  
+
   public Player getPlayer() {
     return this.owner;
   }
@@ -29,10 +31,6 @@ public abstract class Piece {
     return GameManager.getInstance().getBoard();
   }
 
-  public boolean isEaten() {
-    return this.isEaten;
-  }
-
   public synchronized void setPositionR(int r){
     this.positionR = r;
   }
@@ -41,22 +39,39 @@ public abstract class Piece {
     this.positionC = c;
   }
 
-  public synchronized void setEaten() {
+  public boolean isEaten() {
+    return this.isEaten;
+  }
+
+  public void setEaten() {
     this.isEaten = true;
     this.positionR = -1;
     this.positionC = -1;
   }
 
-  public int distanceCounter(int num1, int num2){
-    return Math.abs(num1 - num2);
-  }
-
   public Type getType(){
     return type;
   }
+
+  public boolean tryMove(Slot slot){
+    for (Slot placeableSlot : getAllPlaceableSlot()) {
+      if (placeableSlot.equals(slot)) {
+        if (placeableSlot.isOccupied()) {
+          placeableSlot.getOccupiedPiece().setEaten();
+        }
+        getBoard().removeSlotOccupation(this.getPositionR(), this.getPositionC());
+        placeableSlot.setOccupiedPiece(this);
+        this.onMove(slot);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public abstract void onTurn(int turn);
   
   public abstract void onMove(Slot slot);
 
-  public abstract boolean isPlaceable(Slot slot);
+  public abstract List<Slot> getAllPlaceableSlot();
 
 }

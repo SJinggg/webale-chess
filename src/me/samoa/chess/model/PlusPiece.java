@@ -1,10 +1,15 @@
 package me.samoa.chess.model;
 
-/**
- * The Plus piece moves in a straight line in ANY direction.
- * It CANNOT skip over other pieces.
- */
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * The Plus piece moves in a straight line in ANY direction. It CANNOT skip over
+ * other pieces.
+ * @deprecated
+ * Merged into a single class
+ */
+@Deprecated
 public class PlusPiece extends Piece{
   boolean vertical = false;
 
@@ -14,42 +19,38 @@ public class PlusPiece extends Piece{
   }
 
   @Override
-  public void onMove(Slot slot) {
-    if(isPlaceable(slot)){
-      if(vertical) {
-        super.setPositionR(slot.getRow());
-      }
-      else {
-        super.setPositionC(slot.getCol());
-      }
-    }
-  }
+  public void onTurn(int turn) {}
   
-  @Override 
-  public boolean isPlaceable(Slot selectedPosition) {
+  @Override
+  public void onMove(Slot slot) {}
 
-    if(super.getPositionR() == selectedPosition.getRow() && super.getPositionC() != selectedPosition.getCol()) {
-      int distance = super.distanceCounter(super.getPositionC(), selectedPosition.getCol());
-      int multiplier = (super.getPositionC() > selectedPosition.getCol()) ? 1 : -1;
-      for(int i = 1; i < distance; i++){
-        if(super.getBoard().getSlotOccupied(selectedPosition.getRow(), selectedPosition.getCol() + (i * multiplier)))
-          return false;
+
+  @Override
+  public List<Slot> getAllPlaceableSlot() {
+    // vertical down, vertical up, horizontal right, horizontal left
+    int[][] increments = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
+    ArrayList<Slot> placeableSlots = new ArrayList<>();
+
+    for (int[] increment : increments) {
+      int row = this.getPositionR() + increment[0];
+      int col = this.getPositionC() + increment[1];
+
+      while (!(row >= getBoard().getBoardHeight() || col >= getBoard().getBoardWidth() || row < 0 || col < 0)) {
+        Slot slot = getBoard().getSlot(row, col);
+
+        if (!slot.isOccupied()) {
+          placeableSlots.add(slot);
+          row += increment[0];
+          col += increment[1];
+          continue;
+        }
+        if (slot.getOccupiedPiece().getPlayer().getOpponentTeam() == getPlayer().getTeam()) {
+          placeableSlots.add(slot);
+          break;
+        }
+        break;
       }
-      System.out.println("move vertically");
-      vertical = true;
-      return true;
     }
-    else if(super.getPositionR() != selectedPosition.getRow() && super.getPositionC() == selectedPosition.getCol()) {
-      int distance = super.distanceCounter(super.getPositionR(), selectedPosition.getRow());
-      int multiplier = (super.getPositionR() > selectedPosition.getRow()) ? 1 : -1;
-      for(int i = 1; i < distance; i++){
-          if(super.getBoard().getSlotOccupied(selectedPosition.getRow() + (i * multiplier), selectedPosition.getCol()))
-            return false;
-      }
-      System.out.println("move horizontally");
-      vertical = false;
-      return true;
-    }
-    return false;
+    return placeableSlots;
   }
 }

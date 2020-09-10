@@ -25,4 +25,5 @@ public class API {
     return this.state;
   }
 
+  // API.getInstance().getState() 
 }
