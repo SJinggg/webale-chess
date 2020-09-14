@@ -1,6 +1,5 @@
 package me.samoa.chess.view;
 
-import me.samoa.chess.model.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -9,31 +8,18 @@ import javax.imageio.ImageIO;
 import javax.swing.border.LineBorder;
 import java.util.*;
 import java.io.*;
+import me.samoa.chess.controller.*;
 
 public class GameGUI extends JFrame{
-  private GameManager gameManager;
-  private JMenuBar menu;
-  private JButton startButton;
-  private JButton saveButton;
-  private JButton endButton;
   private JButton[][] buttons = new JButton[8][7];
-  private HashMap<String, BufferedImage> chessImage = new HashMap<>();
+  private static HashMap<String, BufferedImage> chessImage = new HashMap<>();
 
   public GameGUI() {
     super("Webale Chess");
 
     setSize(500, 700);
 
-    menu = new JMenuBar();
-    startButton = new JButton("Start");
-    endButton = new JButton("End");
-    saveButton = new JButton("Save");
-    
-    menu.add(startButton);
-    menu.add(endButton);
-    menu.add(saveButton);
-
-    super.setJMenuBar(menu);
+    super.setJMenuBar(new Menu());
 
     JPanel mpanel = new JPanel(new GridLayout(8,7));
 
@@ -41,7 +27,7 @@ public class GameGUI extends JFrame{
       for (int j = 0; j < 7; j++) {
         buttons[i][j] = new JButton();
         buttons[i][j].setName("("+j+","+i+")");
-        buttons[i][j].setText("("+j+","+i+")");
+        // buttons[i][j].setText("("+j+","+i+")");
         buttons[i][j].setBackground(Color.WHITE);
         buttons[i][j].setBorder(new LineBorder(Color.BLUE));
         buttons[i][j].addMouseListener(new ButtonListener());
@@ -49,8 +35,9 @@ public class GameGUI extends JFrame{
       }
     }
 
-    setChessImg();
+    chessImg();
 
+    chessWImage();
     super.add(mpanel);
 
     setVisible(true);
@@ -65,22 +52,37 @@ public class GameGUI extends JFrame{
 		        setDefaultCloseOperation(EXIT_ON_CLOSE);
 			}
 		});
-	}
-
-  public void setChessImg () {
+  }
+  
+  public void chessImg() {
     try{
-      chessImage.put("Sun Red", ImageIO.read(new File("resources/Sun-red.png")));
-      chessImage.put("Sun Blue", ImageIO.read(new File("resources/Sun-blue.png")));
-      chessImage.put("Arrow Red", ImageIO.read(new File("resources/Arrow-red.png")));
-      chessImage.put("Arrow Blue", ImageIO.read(new File("resources/Arrow-blue.png")));
-      chessImage.put("Chevron Red", ImageIO.read(new File("resources/Chevron-red.png")));
-      chessImage.put("Chevron Blue", ImageIO.read(new File("resources/Chevron-blue.png")));
-      chessImage.put("Plus Red", ImageIO.read(new File("resources/Plus-red.png")));
-      chessImage.put("Plus Blue", ImageIO.read(new File("resources/Plus-blue.png")));
-      chessImage.put("Triangle Red", ImageIO.read(new File("resources/Triangle-red.png")));
-      chessImage.put("Triangle Blue", ImageIO.read(new File("resources/Triangle-blue.png")));
+      chessImage.put("Sun RED", ImageIO.read(new File("src/resources/Sun-red.png")));
+      chessImage.put("Sun BLUE", ImageIO.read(new File("src/resources/Sun-blue.png")));
+      chessImage.put("Sun BLUE", ImageIO.read(new File("src/resources/Sun-blue.png")));
+      chessImage.put("Arrow RED", ImageIO.read(new File("src/resources/Arrow-red.png")));
+      chessImage.put("Arrow BLUE", ImageIO.read(new File("src/resources/Arrow-blue.png")));
+      chessImage.put("Chevron RED", ImageIO.read(new File("src/resources/Chevron-red.png")));
+      chessImage.put("Chevron BLUE", ImageIO.read(new File("src/resources/Chevron-blue.png")));
+      chessImage.put("Plus RED", ImageIO.read(new File("src/resources/Plus-red.png")));
+      chessImage.put("Plus BLUE", ImageIO.read(new File("src/resources/Plus-blue.png")));
+      chessImage.put("Triangle RED", ImageIO.read(new File("src/resources/Triangle-red.png")));
+      chessImage.put("Triangle BLUE", ImageIO.read(new File("src/resources/Triangle-blue.png")));
     } catch(IOException err) {
+      err.printStackTrace();
     }
-    
+  }
+
+  public void chessWImage() {
+    for(int i = 0; i < 8; i++){
+      for(int j = 0; j < 7; j++){
+        BoardSlotInfo slotInfo = new BoardSlotInfo(i, j);
+        if(slotInfo.isOccupied()){
+          if(chessImage.containsKey(slotInfo.getPieceName())){
+            Image imgIcon = (Image)chessImage.get(slotInfo.getPieceName());
+            buttons[i][j].setIcon(new ImageIcon(imgIcon));
+          }
+        } 
+      }
+    }
   }
 }
