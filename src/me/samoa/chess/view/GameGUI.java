@@ -10,6 +10,8 @@ import java.util.*;
 import java.io.*;
 import me.samoa.chess.controller.*;
 
+import java.awt.Color;
+
 public class GameGUI extends JFrame{
   /**
 	 *
@@ -17,6 +19,8 @@ public class GameGUI extends JFrame{
 	private static final long serialVersionUID = 1L;
   private static JButton[][] buttons = new JButton[8][7];
   private static HashMap<String, BufferedImage> chessImage = new HashMap<>();
+  private JPanel informationPanel;
+  private static JLabel infoLabel;
 
   public GameGUI() {
     super("Webale Chess");
@@ -26,6 +30,12 @@ public class GameGUI extends JFrame{
     super.setJMenuBar(new Menu());
 
     JPanel mpanel = new JPanel(new GridLayout(8,7));
+
+    informationPanel = new JPanel();
+
+    infoLabel = new JLabel("Press Start to begin", null, SwingConstants.HORIZONTAL);
+
+    informationPanel.add(infoLabel);
 
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 7; j++) {
@@ -40,6 +50,7 @@ public class GameGUI extends JFrame{
 
     chessImg();
 
+    super.add(informationPanel, BorderLayout.PAGE_START);
     super.add(mpanel);
 
     setVisible(true);
@@ -123,4 +134,24 @@ public class GameGUI extends JFrame{
       }
     }
   }
+<<<<<<< HEAD
 }
+=======
+
+  public static void setLabelMsg(String msg){
+    infoLabel.setText(msg);
+  }
+
+  public static void possibleMoves(int row, int col) {
+    buttons[row][col].setBackground(Color.yellow);
+  }
+
+  public static void resetMoves() {
+    for(int i = 0; i < 8; i++){
+      for(int j = 0; j < 7; j++){
+        buttons[i][j].setBackground(Color.white);
+      }
+    }
+  }
+}
+>>>>>>> e192919adf5d7c03aa5793b49382f702810edb2e
