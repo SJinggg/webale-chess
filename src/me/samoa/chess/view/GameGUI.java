@@ -10,6 +10,8 @@ import java.util.*;
 import java.io.*;
 import me.samoa.chess.controller.*;
 
+import java.awt.Color;
+
 public class GameGUI extends JFrame{
   private static JButton[][] buttons = new JButton[8][7];
   private static HashMap<String, BufferedImage> chessImage = new HashMap<>();
@@ -101,5 +103,17 @@ public class GameGUI extends JFrame{
 
   public static void setLabelMsg(String msg){
     infoLabel.setText(msg);
+  }
+
+  public static void possibleMoves(int row, int col) {
+    buttons[row][col].setBackground(Color.yellow);
+  }
+
+  public static void resetMoves() {
+    for(int i = 0; i < 8; i++){
+      for(int j = 0; j < 7; j++){
+        buttons[i][j].setBackground(Color.white);
+      }
+    }
   }
 }
