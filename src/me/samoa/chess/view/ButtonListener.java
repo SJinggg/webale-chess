@@ -32,6 +32,7 @@ public class ButtonListener implements ActionListener {
               }
               for (MovementInfo movementInfo : movementInfos) {
                 System.out.println(String.format("[%d %d] : %s", movementInfo.getRow(), movementInfo.getCol(), movementInfo.hasOpponent() ? "Has Opponent" : "No Opponent"));
+                GameGUI.possibleMoves(movementInfo.getRow(), movementInfo.getCol());
               }
               System.out.println();
         }else {
@@ -40,6 +41,7 @@ public class ButtonListener implements ActionListener {
                 System.out.println(API.getInstance().getState().getStateType() + "State");
                 clicked.setBackground(Color.white);
                 movementInfos = null;
+                GameGUI.resetMoves();
                 return;
               }
               for (PositionInfo positionInfo : positionInfos) {
