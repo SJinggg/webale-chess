@@ -11,7 +11,7 @@ import java.io.*;
 import me.samoa.chess.controller.*;
 
 public class GameGUI extends JFrame{
-  private JButton[][] buttons = new JButton[8][7];
+  private static JButton[][] buttons = new JButton[8][7];
   private static HashMap<String, BufferedImage> chessImage = new HashMap<>();
 
   public GameGUI() {
@@ -26,18 +26,16 @@ public class GameGUI extends JFrame{
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 7; j++) {
         buttons[i][j] = new JButton();
-        buttons[i][j].setName("("+j+","+i+")");
-        // buttons[i][j].setText("("+j+","+i+")");
+        buttons[i][j].setName("("+i+","+j+")");
         buttons[i][j].setBackground(Color.WHITE);
         buttons[i][j].setBorder(new LineBorder(Color.BLUE));
-        buttons[i][j].addMouseListener(new ButtonListener());
+        buttons[i][j].addActionListener(new ButtonListener());
         mpanel.add(buttons[i][j]); 
       }
     }
 
     chessImg();
 
-    chessWImage();
     super.add(mpanel);
 
     setVisible(true);
@@ -72,7 +70,13 @@ public class GameGUI extends JFrame{
     }
   }
 
-  public void chessWImage() {
+  public static void chessWImage() {
+    for(int i = 0; i < 8; i++){
+      for(int j = 0; j < 7; j++){
+        buttons[i][j].setIcon(null);
+        buttons[i][j].setBackground(Color.white);
+      }
+    }
     for(int i = 0; i < 8; i++){
       for(int j = 0; j < 7; j++){
         BoardSlotInfo slotInfo = new BoardSlotInfo(i, j);
