@@ -11,6 +11,10 @@ import java.io.*;
 import me.samoa.chess.controller.*;
 
 public class GameGUI extends JFrame{
+  /**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
   private static JButton[][] buttons = new JButton[8][7];
   private static HashMap<String, BufferedImage> chessImage = new HashMap<>();
 
@@ -65,9 +69,39 @@ public class GameGUI extends JFrame{
       chessImage.put("Plus BLUE", ImageIO.read(new File("src/resources/Plus-blue.png")));
       chessImage.put("Triangle RED", ImageIO.read(new File("src/resources/Triangle-red.png")));
       chessImage.put("Triangle BLUE", ImageIO.read(new File("src/resources/Triangle-blue.png")));
+      chessImage.put("Rotated Sun RED", ImageIO.read(new File("src/resources/Rot-Sun-red.png")));
+      chessImage.put("Rotated Sun BLUE", ImageIO.read(new File("src/resources/Rot-Sun-blue.png")));
+      chessImage.put("Rotated Sun BLUE", ImageIO.read(new File("src/resources/Rot-Sun-blue.png")));
+      chessImage.put("Rotated Arrow RED", ImageIO.read(new File("src/resources/Rot-Arrow-red.png")));
+      chessImage.put("Rotated Arrow BLUE", ImageIO.read(new File("src/resources/Rot-Arrow-blue.png")));
+      chessImage.put("Rotated Chevron RED", ImageIO.read(new File("src/resources/Rot-Chevron-red.png")));
+      chessImage.put("Rotated Chevron BLUE", ImageIO.read(new File("src/resources/Rot-Chevron-blue.png")));
+      chessImage.put("Rotated Plus RED", ImageIO.read(new File("src/resources/Rot-Plus-red.png")));
+      chessImage.put("Rotated Plus BLUE", ImageIO.read(new File("src/resources/Rot-Plus-blue.png")));
+      chessImage.put("Rotated Triangle RED", ImageIO.read(new File("src/resources/Rot-Triangle-red.png")));
+      chessImage.put("Rotated Triangle BLUE", ImageIO.read(new File("src/resources/Rot-Triangle-blue.png")));
     } catch(IOException err) {
       err.printStackTrace();
     }
+  }
+
+  public static void turnButtons() {
+    JButton[][] rot = new JButton[8][7];
+
+    int n = 0;
+    for(int i = 7; i >= 0; i--){
+      int m = 0;
+      for(int j = 6; j >= 0; j--){
+        rot[i][j] = buttons[n][m];
+        ImageIcon imgIcon = (ImageIcon) buttons[n][m].getIcon();
+        rot[i][j].setIcon(imgIcon);
+        rot[i][j].setName("("+i+","+j+")");
+        m++;
+      }
+      n++;
+    }
+    buttons = rot;
+    chessWImage();
   }
 
   public static void chessWImage() {

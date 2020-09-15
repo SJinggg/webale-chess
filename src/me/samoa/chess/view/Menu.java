@@ -62,7 +62,7 @@ public class Menu extends JMenuBar {
     Action endAction = new AbstractAction("End") {
       @Override
       public void actionPerformed(ActionEvent evt) {
-
+        
       }
     };
 

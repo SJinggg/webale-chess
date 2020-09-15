@@ -20,7 +20,7 @@ public class ButtonListener implements ActionListener {
         clicked.setBackground(Color.yellow);
 
         System.out.println(clicked.getName());
-        //perform movement here...? // listener not inside control
+        
         if(movementInfos == null){
             System.out.println("null");
             movementInfos = API.getInstance().getState().onSelect(selectedRow, selectedCol);
@@ -45,7 +45,8 @@ public class ButtonListener implements ActionListener {
                 System.out.println(String.format("[%d %d] : %s %s %s",
                 positionInfo.getRow(), positionInfo.getCol(), positionInfo.isNorth() ? "North" : "South", positionInfo.getTeam(), positionInfo.getType()));
               }
-              GameGUI.chessWImage();
+              
+              GameGUI.turnButtons();
               System.out.println();
               GameStatusInfo statusInfo = API.getInstance().getState().onCheck();
               System.out.println(String.format("Game Status: %s, Current Turn: %s, Winner: %s",

@@ -14,6 +14,16 @@ public class Board{
     }
   }
 
+  public void turnBoard() {
+    int n = 0;
+    for(int i = BOARDHEIGHT; i >= 0; i--){
+      int m = 0;
+      for(int j = BOARDWIDTH; j >= 0; j--){
+        slots[n][m] = new Slot(i, j);
+      }
+    }
+  }
+
   public int getBoardHeight(){
     return BOARDHEIGHT; 
   }
