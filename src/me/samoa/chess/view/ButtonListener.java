@@ -48,7 +48,8 @@ public class ButtonListener implements ActionListener {
                 System.out.println(String.format("[%d %d] : %s %s %s",
                 positionInfo.getRow(), positionInfo.getCol(), positionInfo.isNorth() ? "North" : "South", positionInfo.getTeam(), positionInfo.getType()));
               }
-              GameGUI.chessWImage();
+              
+              GameGUI.turnButtons();
               System.out.println();
               GameStatusInfo statusInfo = API.getInstance().getState().onCheck();
               GameGUI.setLabelMsg(String.format("Game Status: %s, Current Turn: %s, Winner: %s",
