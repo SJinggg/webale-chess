@@ -13,6 +13,8 @@ import me.samoa.chess.controller.*;
 public class GameGUI extends JFrame{
   private static JButton[][] buttons = new JButton[8][7];
   private static HashMap<String, BufferedImage> chessImage = new HashMap<>();
+  private JPanel informationPanel;
+  private static JLabel infoLabel;
 
   public GameGUI() {
     super("Webale Chess");
@@ -22,6 +24,12 @@ public class GameGUI extends JFrame{
     super.setJMenuBar(new Menu());
 
     JPanel mpanel = new JPanel(new GridLayout(8,7));
+
+    informationPanel = new JPanel();
+
+    infoLabel = new JLabel("Press Start to begin", null, SwingConstants.HORIZONTAL);
+
+    informationPanel.add(infoLabel);
 
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 7; j++) {
@@ -36,6 +44,7 @@ public class GameGUI extends JFrame{
 
     chessImg();
 
+    super.add(informationPanel, BorderLayout.PAGE_START);
     super.add(mpanel);
 
     setVisible(true);
@@ -88,5 +97,9 @@ public class GameGUI extends JFrame{
         } 
       }
     }
+  }
+
+  public static void setLabelMsg(String msg){
+    infoLabel.setText(msg);
   }
 }

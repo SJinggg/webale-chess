@@ -21,10 +21,11 @@ public class ButtonListener implements ActionListener {
 
         System.out.println(clicked.getName());
         //perform movement here...? // listener not inside control
+        GameGUI.setLabelMsg("Select on" + clicked.getName());
         if(movementInfos == null){
-            System.out.println("null");
             movementInfos = API.getInstance().getState().onSelect(selectedRow, selectedCol);
             if (movementInfos == null) {
+                GameGUI.setLabelMsg("Invalid");
                 System.out.println(API.getInstance().getState().getStateType() + "State");
                 clicked.setBackground(Color.white);
                 return;
@@ -48,8 +49,13 @@ public class ButtonListener implements ActionListener {
               GameGUI.chessWImage();
               System.out.println();
               GameStatusInfo statusInfo = API.getInstance().getState().onCheck();
-              System.out.println(String.format("Game Status: %s, Current Turn: %s, Winner: %s",
+              GameGUI.setLabelMsg(String.format("Game Status: %s, Current Turn: %s, Winner: %s",
               statusInfo.getStatus(), statusInfo.getCurrentTurn(), statusInfo.getWinner()));
+              if(statusInfo.getWinner() != null){
+                JOptionPane.showMessageDialog(null, statusInfo.getWinner() + " has won!",  
+                "information", JOptionPane.INFORMATION_MESSAGE);
+                Menu.startAction.setEnabled(true);
+              }
               System.out.println();
               movementInfos = null;
         }
