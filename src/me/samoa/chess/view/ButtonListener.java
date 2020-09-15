@@ -20,12 +20,8 @@ public class ButtonListener implements ActionListener {
         clicked.setBackground(Color.yellow);
 
         System.out.println(clicked.getName());
-<<<<<<< HEAD
-        
-=======
         //perform movement here...? // listener not inside control
         GameGUI.setLabelMsg("Select on" + clicked.getName());
->>>>>>> e192919adf5d7c03aa5793b49382f702810edb2e
         if(movementInfos == null){
             movementInfos = API.getInstance().getState().onSelect(selectedRow, selectedCol);
             if (movementInfos == null) {

@@ -134,9 +134,6 @@ public class GameGUI extends JFrame{
       }
     }
   }
-<<<<<<< HEAD
-}
-=======
 
   public static void setLabelMsg(String msg){
     infoLabel.setText(msg);
@@ -154,4 +151,3 @@ public class GameGUI extends JFrame{
     }
   }
 }
->>>>>>> e192919adf5d7c03aa5793b49382f702810edb2e
