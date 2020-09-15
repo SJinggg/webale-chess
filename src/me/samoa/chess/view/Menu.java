@@ -10,21 +10,17 @@ import me.samoa.chess.controller.GameStatusInfo;
 import me.samoa.chess.controller.PositionInfo;
 
 public class Menu extends JMenuBar {
-  private JButton startButton;
-  private JButton saveButton;
-  private JButton endButton;
-  private JButton loadButton;
+  private JMenuItem start;
+  private JMenuItem save;
+  private JMenuItem end;
+  private JMenuItem load;
 
   public Menu() {
     super();
 
-    startButton = new JButton("Start");
-    endButton = new JButton("End");
-    loadButton = new JButton("Load");
-    saveButton = new JButton("Save");
-
-    startButton.addMouseListener(new MouseAdapter() {
-      public void mouseClicked(MouseEvent evt) {
+    Action startAction = new AbstractAction("Start") {
+      @Override
+      public void actionPerformed(ActionEvent evt) {
         try {
           List<PositionInfo> postionInfos = API.getInstance().getState().onReset();
           for (PositionInfo positionInfo : postionInfos) {
@@ -44,27 +40,42 @@ public class Menu extends JMenuBar {
         } catch (Exception e) {
           e.printStackTrace();
         }
+        setEnabled(false);
+        GameGUI.chessWImage();
       }
-    });
+    };
 
-    endButton.addMouseListener(new MouseAdapter() {
-      public void mouseClicked(MouseEvent evt) {
-        try {
-          GameStatusInfo gameStatus = new GameStatusInfo();
-          if(gameStatus.getWinner() != null){
-            System.out.println("Winner is " + gameStatus.getWinner());
-          }
-          //confirmation -> clear & reset
-          
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
+    Action saveAction = new AbstractAction("Save") {
+      @Override
+      public void actionPerformed(ActionEvent evt) {
+
       }
-    });
-    super.add(startButton);
-    super.add(saveButton);
-    super.add(loadButton);
-    super.add(endButton);
+    };
+
+    Action loadAction = new AbstractAction("Load") {
+      @Override
+      public void actionPerformed(ActionEvent evt) {
+
+      }
+    };
+
+    Action endAction = new AbstractAction("End") {
+      @Override
+      public void actionPerformed(ActionEvent evt) {
+
+      }
+    };
+
+    start = new JMenuItem(startAction);
+    save = new JMenuItem(saveAction);
+    load = new JMenuItem(loadAction);
+    end = new JMenuItem(endAction);
+
+    super.add(start);
+    super.add(save);
+    super.add(load);
+    super.add(end);
+    
   }
 
 }
