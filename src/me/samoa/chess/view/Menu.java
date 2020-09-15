@@ -6,6 +6,7 @@ import java.awt.event.*;
 import java.util.List;
 
 import me.samoa.chess.controller.API;
+import me.samoa.chess.controller.ClearState;
 import me.samoa.chess.controller.GameStatusInfo;
 import me.samoa.chess.controller.PositionInfo;
 
@@ -14,11 +15,22 @@ public class Menu extends JMenuBar {
   private JMenuItem save;
   private JMenuItem end;
   private JMenuItem load;
+  protected static Action startAction;
 
   public Menu() {
     super();
+    Action endAction = new AbstractAction("End") {
+      @Override
+      public void actionPerformed(ActionEvent evt) {
+        API api = API.getInstance();
+        api.setState(new ClearState(api));
+        startAction.setEnabled(true);
+        GameGUI.setLabelMsg("Press Start to begin");
+        setEnabled(false);
+      }
+    };
 
-    Action startAction = new AbstractAction("Start") {
+    startAction = new AbstractAction("Start") {
       @Override
       public void actionPerformed(ActionEvent evt) {
         try {
@@ -34,13 +46,14 @@ public class Menu extends JMenuBar {
 
         try {
           GameStatusInfo initState = API.getInstance().getState().onStart();
-          System.out.println(String.format("Game Status: %s, Current Turn: %s, Winner: %s",
+          GameGUI.setLabelMsg(String.format("Game Status: %s, Current Turn: %s, Winner: %s",
           initState.getStatus(), initState.getCurrentTurn(), initState.getWinner()));
           System.out.println();
         } catch (Exception e) {
           e.printStackTrace();
         }
         setEnabled(false);
+        endAction.setEnabled(true);
         GameGUI.chessWImage();
       }
     };
@@ -48,18 +61,11 @@ public class Menu extends JMenuBar {
     Action saveAction = new AbstractAction("Save") {
       @Override
       public void actionPerformed(ActionEvent evt) {
-
+        
       }
     };
 
     Action loadAction = new AbstractAction("Load") {
-      @Override
-      public void actionPerformed(ActionEvent evt) {
-
-      }
-    };
-
-    Action endAction = new AbstractAction("End") {
       @Override
       public void actionPerformed(ActionEvent evt) {
 
