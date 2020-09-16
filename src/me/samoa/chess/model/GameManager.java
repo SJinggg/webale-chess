@@ -1,5 +1,7 @@
 package me.samoa.chess.model;
 
+import java.io.*;
+
 public class GameManager {
   public enum GameState {
     PLAY, END
@@ -70,6 +72,31 @@ public class GameManager {
       return false;
     }
     return false;
+  }
+
+  public void saveGame(String file) {
+    GameManager gameManager = GameManager.getInstance();
+    try{
+      PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(new File(file))));
+      for(int i = 0; i < 8; i++){
+        for(int j = 0; j < 7; j++){
+          Piece piece = gameManager.getBoard().getSlot(i, j).getOccupiedPiece();
+          if(piece != null){
+            StringBuilder sB = new StringBuilder("").append(piece.getPlayer().getTeam()).append(":").append(piece.getPositionR()).append(",").append(piece.getPositionC()).append(":").append(piece.getType());
+            pw.println(sB.toString());
+          }
+        }
+      }
+      pw.println("CurrentPlayer: " + gameManager.getCurrentPlayer().getTeam());
+      pw.flush();
+      pw.close();
+    } catch (IOException err){
+      err.printStackTrace();
+    }
+  }
+
+  public void loadGame(String file){
+    
   }
 
   public Board getBoard() {
