@@ -76,6 +76,10 @@ public class GameManager {
 
   public void saveGame(String file) {
     GameManager gameManager = GameManager.getInstance();
+    File directory = new File("src/save");
+    if(!directory.exists()) {
+      directory.mkdir();
+    }
     try{
       PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(new File(file))));
       for(int i = 0; i < 8; i++){
