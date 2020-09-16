@@ -83,15 +83,6 @@ public class GameManager {
     }
     try{
       PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(new File(file))));
-      // for(int i = 0; i < 8; i++){
-      //   for(int j = 0; j < 7; j++){
-      //     Piece piece = gameManager.getBoard().getSlot(i, j).getOccupiedPiece();
-      //     if(piece != null){
-      //       StringBuilder sB = new StringBuilder("").append(piece.getPlayer().getTeam()).append(":").append(piece.getPositionR()).append(":").append(piece.getPositionC()).append(":").append(piece.getType()).append(":").append(piece.isEaten());
-      //       pw.println(sB.toString());
-      //     }
-      //   }
-      // }
       List<Piece> piecesBlue = gameManager.getPlayer(Team.BLUE).getPieces();
       for(Piece p: piecesBlue){
         StringBuilder sB = new StringBuilder().append(p.getPlayer().getTeam()).append(":").append(p.getPositionR()).append(":").append(p.getPositionC()).append(":").append(p.getType()).append(":").append(p.isEaten());
@@ -120,7 +111,6 @@ public class GameManager {
       
       String readLine;
       while ((readLine = input.readLine()) != null) {
-        System.out.println(readLine);
         String[] tokens = readLine.split(":");
         if(tokens[0].equals("CurrentPlayer")){
           if(tokens[1].equals("RED")){
@@ -157,9 +147,7 @@ public class GameManager {
       e.printStackTrace();
     }
     List<Piece> piecesBlue = gameManager.getPlayer(Team.BLUE).getPieces();
-    System.out.println(piecesBlue);
     for(Piece p:piecesBlue){
-      System.out.println(p);
       if(!p.isEaten())
         board.setSlotOccupiedPiece(p, p.getPositionR(), p.getPositionC());
     }
