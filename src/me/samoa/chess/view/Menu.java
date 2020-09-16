@@ -9,7 +9,9 @@ import me.samoa.chess.controller.API;
 import me.samoa.chess.controller.ClearState;
 import me.samoa.chess.controller.GameStatusInfo;
 import me.samoa.chess.controller.PositionInfo;
+import me.samoa.chess.controller.ReadyState;
 import me.samoa.chess.model.GameManager;
+import me.samoa.chess.model.Team;
 
 public class Menu extends JMenuBar {
   private JMenuItem start;
@@ -37,8 +39,8 @@ public class Menu extends JMenuBar {
         try {
           List<PositionInfo> postionInfos = API.getInstance().getState().onReset();
           for (PositionInfo positionInfo : postionInfos) {
-            System.out.println(String.format("[%d %d] : %s %s %s",
-            positionInfo.getRow(), positionInfo.getCol(), positionInfo.isNorth() ? "North" : "South", positionInfo.getTeam(), positionInfo.getType()));
+            System.out.println(String.format("[%d %d] : %s %s %s", positionInfo.getRow(), positionInfo.getCol(),
+                positionInfo.isNorth() ? "North" : "South", positionInfo.getTeam(), positionInfo.getType()));
           }
           System.out.println();
         } catch (Exception e) {
@@ -47,8 +49,8 @@ public class Menu extends JMenuBar {
 
         try {
           GameStatusInfo initState = API.getInstance().getState().onStart();
-          GameGUI.setLabelMsg(String.format("Game Status: %s, Current Turn: %s, Winner: %s",
-          initState.getStatus(), initState.getCurrentTurn(), initState.getWinner()));
+          GameGUI.setLabelMsg(String.format("Game Status: %s, Current Turn: %s, Winner: %s", initState.getStatus(),
+              initState.getCurrentTurn(), initState.getWinner()));
           System.out.println();
         } catch (Exception e) {
           e.printStackTrace();
@@ -74,7 +76,25 @@ public class Menu extends JMenuBar {
     Action loadAction = new AbstractAction("Load") {
       @Override
       public void actionPerformed(ActionEvent evt) {
-
+        GameManager gameManager = GameManager.getInstance();
+        String inputValue = "";
+        while (inputValue == null || inputValue.equals(""))
+          inputValue = JOptionPane.showInputDialog("Please input the name of the file to load");
+        gameManager.loadGame("src/save/" + inputValue + ".txt");
+        API api = API.getInstance();
+        api.setState(new ReadyState(api));
+        try {
+          GameStatusInfo loadState = API.getInstance().getState().onStart();
+          GameGUI.setLabelMsg(String.format("Game Status: %s, Current Turn: %s, Winner: %s",
+          loadState.getStatus(), loadState.getCurrentTurn(), loadState.getWinner()));
+          System.out.println();
+          if(loadState.getCurrentTurn() == Team.BLUE)
+            GameGUI.turnButtons();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+        startAction.setEnabled(false);
+        GameGUI.chessWImage();
       }
     };
 

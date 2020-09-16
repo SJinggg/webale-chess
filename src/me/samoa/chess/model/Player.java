@@ -38,6 +38,11 @@ public class Player {
     return p;
   }
 
+  public void pushPieceToEnd(Piece p){
+    this.pieces.remove(p);
+    this.pieces.add(p);
+  }
+
   public List<Piece> getPieces(){
     return this.pieces;
   }

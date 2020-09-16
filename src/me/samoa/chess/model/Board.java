@@ -47,4 +47,12 @@ public class Board{
   public void removeSlotOccupation(int row, int col){
     slots[row][col].setOccupiedPiece(null);
   }
+
+  public void clearBoard(){
+    for(int i = 0; i < BOARDHEIGHT; i++){
+      for(int j = 0; j < BOARDWIDTH; j++){
+        removeSlotOccupation(i,j);
+      }
+    }
+  }
 }

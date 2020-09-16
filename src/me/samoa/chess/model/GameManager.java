@@ -1,6 +1,7 @@
 package me.samoa.chess.model;
 
 import java.io.*;
+import java.util.List;
 
 public class GameManager {
   public enum GameState {
@@ -78,25 +79,91 @@ public class GameManager {
     GameManager gameManager = GameManager.getInstance();
     try{
       PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(new File(file))));
-      for(int i = 0; i < 8; i++){
-        for(int j = 0; j < 7; j++){
-          Piece piece = gameManager.getBoard().getSlot(i, j).getOccupiedPiece();
-          if(piece != null){
-            StringBuilder sB = new StringBuilder("").append(piece.getPlayer().getTeam()).append(":").append(piece.getPositionR()).append(",").append(piece.getPositionC()).append(":").append(piece.getType());
-            pw.println(sB.toString());
-          }
-        }
+      // for(int i = 0; i < 8; i++){
+      //   for(int j = 0; j < 7; j++){
+      //     Piece piece = gameManager.getBoard().getSlot(i, j).getOccupiedPiece();
+      //     if(piece != null){
+      //       StringBuilder sB = new StringBuilder("").append(piece.getPlayer().getTeam()).append(":").append(piece.getPositionR()).append(":").append(piece.getPositionC()).append(":").append(piece.getType()).append(":").append(piece.isEaten());
+      //       pw.println(sB.toString());
+      //     }
+      //   }
+      // }
+      List<Piece> piecesBlue = gameManager.getPlayer(Team.BLUE).getPieces();
+      for(Piece p: piecesBlue){
+        StringBuilder sB = new StringBuilder().append(p.getPlayer().getTeam()).append(":").append(p.getPositionR()).append(":").append(p.getPositionC()).append(":").append(p.getType()).append(":").append(p.isEaten());
+        pw.println(sB.toString());
       }
-      pw.println("CurrentPlayer: " + gameManager.getCurrentPlayer().getTeam());
+      List<Piece> piecesRed = gameManager.getPlayer(Team.RED).getPieces();
+      for(Piece p: piecesRed){
+        StringBuilder sB = new StringBuilder().append(p.getPlayer().getTeam()).append(":").append(p.getPositionR()).append(":").append(p.getPositionC()).append(":").append(p.getType()).append(":").append(p.isEaten());
+        pw.println(sB.toString());
+      }
+      pw.println("CurrentPlayer:" + gameManager.getCurrentPlayer().getTeam());
       pw.flush();
       pw.close();
-    } catch (IOException err){
-      err.printStackTrace();
+    } catch (IOException e){
+      e.printStackTrace();
     }
   }
 
   public void loadGame(String file){
-    
+    GameManager gameManager = GameManager.getInstance();
+    gameManager.getBoard().clearBoard();
+    Board board = gameManager.getBoard();
+    BufferedReader input;
+    try{
+      input = new BufferedReader(new FileReader(new File(file)));
+      
+      String readLine;
+      while ((readLine = input.readLine()) != null) {
+        System.out.println(readLine);
+        String[] tokens = readLine.split(":");
+        if(tokens[0].equals("CurrentPlayer")){
+          if(tokens[1].equals("RED")){
+            gameManager.setCurrentPlayer(Team.RED);
+          }
+          else{
+            gameManager.setCurrentPlayer(Team.BLUE);
+          }
+        } else {
+          Player player = tokens[0].equals("RED") ? getPlayer(Team.RED): getPlayer(Team.BLUE);
+          int r = Integer.parseInt(tokens[1]);
+          int c = Integer.parseInt(tokens[2]);
+          Type type = Type.getType(tokens[3]);
+          Boolean isEaten = tokens[4].equals("false") ? false: true;
+          List<Piece> pieces = player.getPieces();
+          for(Piece p: pieces){
+            if(p.getType() == type){
+              p.setPositionR(r);
+              p.setPositionC(c);
+              if(isEaten)
+                p.setEaten();
+              player.pushPieceToEnd(p);
+              break;
+            }
+          }
+        }
+      }
+      input.close();
+    } catch(RuntimeException e){
+      e.printStackTrace();
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    List<Piece> piecesBlue = gameManager.getPlayer(Team.BLUE).getPieces();
+    System.out.println(piecesBlue);
+    for(Piece p:piecesBlue){
+      System.out.println(p);
+      if(!p.isEaten())
+        board.setSlotOccupiedPiece(p, p.getPositionR(), p.getPositionC());
+    }
+    List<Piece> piecesRed = gameManager.getPlayer(Team.RED).getPieces();
+    for(Piece p:piecesRed){
+      if(!p.isEaten())
+        board.setSlotOccupiedPiece(p, p.getPositionR(), p.getPositionC());
+    }
   }
 
   public Board getBoard() {
@@ -114,6 +181,10 @@ public class GameManager {
 
   public Player getCurrentPlayer() {
     return currentPlayer;
+  }
+
+  public void setCurrentPlayer(Team team) {
+    this.currentPlayer = getPlayer(team);
   }
 
   public Player getWinner() {
