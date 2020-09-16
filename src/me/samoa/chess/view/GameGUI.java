@@ -104,8 +104,6 @@ public class GameGUI extends JFrame{
       int m = 0;
       for(int j = 6; j >= 0; j--){
         rot[i][j] = buttons[n][m];
-        ImageIcon imgIcon = (ImageIcon) buttons[n][m].getIcon();
-        rot[i][j].setIcon(imgIcon);
         rot[i][j].setName("("+i+","+j+")");
         m++;
       }

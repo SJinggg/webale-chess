@@ -1,6 +1,7 @@
 package me.samoa.chess.controller;
 
 import me.samoa.chess.model.Piece;
+import me.samoa.chess.model.Team;
 import me.samoa.chess.model.GameManager;
 
 public class BoardSlotInfo {
@@ -12,7 +13,9 @@ public class BoardSlotInfo {
     this.occupiedPiece = GameManager.getInstance().getBoard().getSlot(row, col).getOccupiedPiece();
     this.occupied = this.occupiedPiece == null ? false: true;
     if(occupied)
-      this.pieceName = this.occupiedPiece.getType().toString() + " " + this.occupiedPiece.getPlayer().getTeam().toString();
+      this.pieceName = GameManager.getInstance().getCurrentPlayer().teamIdentify(Team.RED) 
+        ? (this.occupiedPiece.getType().toString() + " " + this.occupiedPiece.getPlayer().getTeam().toString())
+        : ("Rotated " + this.occupiedPiece.getType().toString() + " " + this.occupiedPiece.getPlayer().getTeam().toString());
   }
 
   public boolean isOccupied() {
