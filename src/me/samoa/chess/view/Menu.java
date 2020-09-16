@@ -9,6 +9,7 @@ import me.samoa.chess.controller.API;
 import me.samoa.chess.controller.ClearState;
 import me.samoa.chess.controller.GameStatusInfo;
 import me.samoa.chess.controller.PositionInfo;
+import me.samoa.chess.model.GameManager;
 
 public class Menu extends JMenuBar {
   private JMenuItem start;
@@ -61,7 +62,12 @@ public class Menu extends JMenuBar {
     Action saveAction = new AbstractAction("Save") {
       @Override
       public void actionPerformed(ActionEvent evt) {
-        
+        GameManager gameManager = GameManager.getInstance();
+        String inputValue = JOptionPane.showInputDialog("Please input the name of the file to save");
+        if (inputValue != null && !inputValue.equals("")) {
+          inputValue = inputValue.replaceAll("\\.", "");
+          gameManager.saveGame("src/save/" + inputValue + ".txt");
+        }
       }
     };
 
