@@ -1,8 +1,15 @@
 package me.samoa.chess.model;
 
-public enum Type{
+/**
+ * Indicates the type of webale piece
+ */
+public enum Type {
+
   Arrow, Chevron, Plus, Triangle, Sun;
 
+  /**
+   * toString() function
+   */
   public String toString(){
     switch(this){
     case Arrow:
@@ -19,6 +26,12 @@ public enum Type{
     return null;
   }
 
+  /**
+   * Get the type from the String
+   * 
+   * @param str the string to be matched with the type
+   * @return return the type
+   */
   public static Type getType (String str){
     if(str.equals(Arrow.toString()))
       return Arrow;

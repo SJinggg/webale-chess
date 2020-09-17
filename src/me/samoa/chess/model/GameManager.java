@@ -3,6 +3,9 @@ package me.samoa.chess.model;
 import java.io.*;
 import java.util.List;
 
+/**
+ * Manage all the movements and logical operations of the game
+ */
 public class GameManager {
   public enum GameState {
     PLAY, END
@@ -10,6 +13,11 @@ public class GameManager {
 
   public static GameManager instance;
 
+  
+  /**
+   * Singleton Design Pattern
+   * Get the instance of the GameManager or create a new one if not exist
+   */
   public static GameManager getInstance() {
     if (instance == null) {
       instance = new GameManager();
@@ -17,6 +25,9 @@ public class GameManager {
     return instance;
   }
 
+  /**
+   * Create a new instance of GameManger
+   */
   public static void newInstance() {
     instance = new GameManager();
   }
@@ -27,6 +38,9 @@ public class GameManager {
   private Player winner;
   private GameState gameState;
 
+  /**
+   * Constructor of GameManager
+   */
   public GameManager() { 
     this.gameState = GameState.PLAY;
     board = new Board();
@@ -54,6 +68,13 @@ public class GameManager {
     } 
   }
 
+  /**
+   * Validates the movement performed
+   * 
+   * @param selectedPiece the piece that has been selected to move
+   * @param targetDest the targeted location to move the piece
+   * @return <code>true</code> if the movement performed is valid; <code>false</code> otherwise.
+   */
   public boolean performMove(Piece selectedPiece, Slot targetDest) {
     if (gameState != GameState.PLAY) {
       throw new IllegalStateException("Attempt to perform move in invalid Game State");
@@ -75,6 +96,11 @@ public class GameManager {
     return false;
   }
 
+  /**
+   * Perform the game saving function
+   * 
+   * @param file the file name to save the state of game
+   */
   public void saveGame(String file) {
     GameManager gameManager = GameManager.getInstance();
     File directory = new File("src/save");
@@ -101,6 +127,11 @@ public class GameManager {
     }
   }
 
+  /**
+   * Perform the load game function
+   * 
+   * @param file the filename where the game state should be loaded from
+   */
   public void loadGame(String file){
     GameManager gameManager = GameManager.getInstance();
     gameManager.getBoard().clearBoard();
@@ -158,10 +189,21 @@ public class GameManager {
     }
   }
 
+  /**
+   * Get the webale board
+   * 
+   * @return the board 
+   */
   public Board getBoard() {
     return this.board;
   }
 
+  /**
+   * Get the player who belongs to the team
+   * 
+   * @param team The team where the player belongs to
+   * @return the player or null
+   */
   public Player getPlayer(Team team) {
     for (Player player : players) {
       if (player.getTeam() == team) {
@@ -171,18 +213,38 @@ public class GameManager {
     return null;
   }
 
+  /**
+   * Get current player of this round
+   * 
+   * @return player of this round
+   */
   public Player getCurrentPlayer() {
     return currentPlayer;
   }
 
+  /**
+   * Set the current player of this round
+   * 
+   * @param team the team the player belongs to
+   */
   public void setCurrentPlayer(Team team) {
     this.currentPlayer = getPlayer(team);
   }
 
+  /**
+   * Get the winner if exist
+   * 
+   * @return the winner or null
+   */
   public Player getWinner() {
     return this.winner;
   }
 
+  /**
+   * Get current game state
+   * 
+   * @return current game state
+   */
   public GameState getGameState() {
     return this.gameState;
   }

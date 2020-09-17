@@ -1,8 +1,6 @@
 package me.samoa.chess;
 
-import me.samoa.chess.debug.BasicCase;
-import me.samoa.chess.debug.CaptureSunCase;
-import me.samoa.chess.debug.IllegalMoveCase;
+import me.samoa.chess.debug.*;
 
 public class Debug {
 

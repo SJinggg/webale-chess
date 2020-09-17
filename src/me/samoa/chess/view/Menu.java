@@ -13,6 +13,9 @@ import me.samoa.chess.controller.ReadyState;
 import me.samoa.chess.model.GameManager;
 import me.samoa.chess.model.Team;
 
+/**
+ * The elements of menu that will be used in the game
+ */
 public class Menu extends JMenuBar {
   private JMenuItem start;
   private JMenuItem save;
@@ -20,6 +23,9 @@ public class Menu extends JMenuBar {
   private JMenuItem load;
   protected static Action startAction;
 
+  /**
+   * Menu constructor, main components of menu are here
+   */
   public Menu() {
     super();
     Action endAction = new AbstractAction("End") {

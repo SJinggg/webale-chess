@@ -14,6 +14,11 @@ public class PositionInfo {
   private Team team;
   private boolean isNorth;
 
+  /**
+   * Constructor of PositionInfo class
+   * 
+   * @param piece Webale Piece Object
+   */
   public PositionInfo(Piece piece) {
     this.row = piece.getPositionR();
     this.col = piece.getPositionC();
@@ -27,22 +32,47 @@ public class PositionInfo {
     }
   }
 
+  /**
+   * Get row of piece
+   * 
+   * @return Piece's row
+   */
   public int getRow() {
     return this.row;
   }
 
+  /**
+   * Get column of piece
+   * 
+   * @return Piece's column
+   */ 
   public int getCol() {
     return this.col;
   }
 
+  /**
+   * Get type of piece
+   * 
+   * @return Piece's type
+   */ 
   public Type getType() {
     return this.type;
   }
 
+  /**
+   * Get team of piece
+   * 
+   * @return Piece's team
+   */ 
   public Team getTeam() {
     return this.team;
   }
 
+  /**
+   * Check if piece's direction is north
+   * 
+   * @return <code>true</code> if direction of piece is north ; else <code>false</code>
+   */
   public boolean isNorth() {
     return this.isNorth;
   }

@@ -10,31 +10,42 @@ import java.util.List;
 
 public class SunPiece extends Piece {
 
+  /**
+   * Constructor of Sun Piece
+   * 
+   * @param player Player of Sun Piece
+   * @param r Row of Sun Piece
+   * @param c Column of Sun Piece
+   */
   public SunPiece(Player player, int r, int c) {
     super(player, r, c);
     type = Type.Sun;
   }
 
+  /**
+   * On turn movement of webale piece
+   * 
+   * @param turn the number of turn
+   */
   @Override
   public void onTurn(int turn) {}
 
+  /**
+   * On move movement of webale piece
+   * 
+   * @param slot the slot of the piece intends to move to
+   */
   @Override
   public void onMove(Slot slot) {}
 
+  /**
+   * Get all placeable slot for this piece on the webale board
+   * 
+   * @return list of the slot that is valid for potential movement
+   */
   @Override
   public List<Slot> getAllPlaceableSlot() {
     ArrayList<Slot> placeableSlots = new ArrayList<>();
-
-
-    // for reference
-    // placeableSlots.add(getBoard().getSlot(this.getPositionR() + 1, this.getPositionC() - 1));
-    // placeableSlots.add(getBoard().getSlot(this.getPositionR() + 1, this.getPositionC()));
-    // placeableSlots.add(getBoard().getSlot(this.getPositionR() + 1, this.getPositionC() + 1));
-    // placeableSlots.add(getBoard().getSlot(this.getPositionR(), this.getPositionC() + 1));
-    // placeableSlots.add(getBoard().getSlot(this.getPositionR() - 1, this.getPositionC() + 1));
-    // placeableSlots.add(getBoard().getSlot(this.getPositionR() - 1, this.getPositionC()));
-    // placeableSlots.add(getBoard().getSlot(this.getPositionR() - 1, this.getPositionC() - 1));
-    // placeableSlots.add(getBoard().getSlot(this.getPositionR(), this.getPositionC() - 1));
 
     for (int i = -1; i < 2; i++) {
       for (int j = -1; j < 2; j++) {

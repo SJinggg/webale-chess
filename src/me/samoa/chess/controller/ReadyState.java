@@ -13,7 +13,12 @@ public class ReadyState extends State {
     throw new IllegalStateException("Locked state");
   }
 
-  // return game status information -> current player, game status, winner
+  /**
+   * return game status information
+   * usage: API.getInstance().getState().onStart()
+   * 
+   * @return GameStatusInfo
+   */
   @Override
   public GameStatusInfo onStart() {
     api.setState(new TurnState(api));
@@ -35,6 +40,11 @@ public class ReadyState extends State {
     throw new IllegalStateException("Locked state");
   }
 
+  /**
+   * Check type of state
+   * 
+   * @return State type
+   */
   @Override
   public Type getStateType() {
     return Type.Ready;

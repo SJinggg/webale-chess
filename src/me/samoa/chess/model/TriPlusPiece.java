@@ -11,6 +11,13 @@ import java.util.List;
 
 public class TriPlusPiece extends Piece{
 
+  /**
+   * Constructor of Triangle and Plus Piece
+   * 
+   * @param player Player of Triangle and Plus Piece
+   * @param r Row of Triangle and Plus Piece
+   * @param c Column of Triangle and Plus Piece
+   */
   public TriPlusPiece(Player player, int r, int c, boolean isPlus) {
     super(player, r, c);
     if (isPlus) {
@@ -20,6 +27,11 @@ public class TriPlusPiece extends Piece{
     }
   }
 
+  /**
+   * On turn movement of webale piece
+   * 
+   * @param turn the number of turn
+   */
   @Override
   public void onTurn(int turn) {
     if (turn % 2 == 0) {
@@ -27,9 +39,20 @@ public class TriPlusPiece extends Piece{
     }
   }
 
+  /**
+   * On move movement of webale piece
+   * 
+   * @param slot the slot of the piece intends to move to
+   */
   @Override
   public void onMove(Slot slot) {}
 
+  
+  /**
+   * Get all placeable slot for this piece on the webale board
+   * 
+   * @return list of the slot that is valid for potential movement
+   */
   @Override
   public List<Slot> getAllPlaceableSlot() {
     // vertical down, vertical up, horizontal right, horizontal left :  southeast, northwest, southwest, northeast

@@ -12,17 +12,39 @@ import java.util.List;
 @Deprecated
 public class TrianglePiece extends Piece{
 
+  /**
+   * Constructor of Triangle Piece
+   * 
+   * @param player Player of Triangle Piece
+   * @param r Row of Triangle Piece
+   * @param c Column of Triangle Piece
+   */
   public TrianglePiece(Player player, int r, int c) {
     super(player, r, c);
     type = Type.Triangle;
   }
 
+  /**
+   * On turn movement of webale piece
+   * 
+   * @param turn the number of turn
+   */
   @Override
   public void onTurn(int turn) {}
 
+  /**
+   * On move movement of webale piece
+   * 
+   * @param slot the slot of the piece intends to move to
+   */
   @Override
   public void onMove(Slot slot) {}
 
+  /**
+   * Get all placeable slot for this piece on the webale board
+   * 
+   * @return list of the slot that is valid for potential movement
+   */
   @Override
   public List<Slot> getAllPlaceableSlot() {
     // southeast, northwest, southwest, northeast

@@ -33,6 +33,14 @@ public class MovingState extends State {
     throw new IllegalStateException("Locked state");
   }
 
+  /**
+   * To move the piece and set pieces to new positions
+   * usage: API.getInstance().getState().onMove()
+   * 
+   * @param row Row of selected slot
+   * @param col Column of selected slot
+   * @return List of Position Information
+   */
   @Override
   public List<PositionInfo> onMove(int row, int col) {
     Slot selectedSlot = GameManager.getInstance().getBoard().getSlot(row, col);
@@ -59,6 +67,11 @@ public class MovingState extends State {
     throw new IllegalStateException("Locked state");
   }
 
+  /**
+   * Check type of state
+   * 
+   * @return State type
+   */
   @Override
   public Type getStateType() {
     return Type.Moving;
