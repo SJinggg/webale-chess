@@ -9,6 +9,7 @@ import me.samoa.chess.model.GameManager;
  * Provide the slot information of board
  * 
  * @author Koh Shi Jing
+ * @author Wong Man Yi
  */
 public class BoardSlotInfo {
   boolean occupied;
