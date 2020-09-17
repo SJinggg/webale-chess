@@ -2,6 +2,8 @@ package me.samoa.chess.view;
 
 /**
  * Window of game
+ * 
+ * @author Casey Teh Qi Shi
  */
 public interface Window {
   

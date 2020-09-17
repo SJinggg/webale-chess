@@ -6,6 +6,11 @@ import java.util.List;
 /**
  * The Chevron moves in an L shape: 2 steps in one direction, then 1 step
  * perpendicular to it. It CAN skip over other pieces.
+ * 
+ * @author Casey Teh Qi Shi
+ * @author Wong Man Yi
+ * @author Koh Shi Jing
+ * @author Nadia Ahmad Pirdaus
  */
 
 public class ChevronPiece extends Piece{

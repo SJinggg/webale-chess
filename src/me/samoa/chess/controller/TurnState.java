@@ -7,7 +7,11 @@ import me.samoa.chess.model.GameManager;
 import me.samoa.chess.model.Piece;
 import me.samoa.chess.model.Slot;
 
-
+/**
+ * State for chess piece selection
+ * 
+ * @author Casey Teh Qi Shi
+ */
 public class TurnState extends State {
 
   public TurnState(API api) {

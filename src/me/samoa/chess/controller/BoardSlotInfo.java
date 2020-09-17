@@ -5,6 +5,11 @@ import me.samoa.chess.model.Team;
 import me.samoa.chess.model.ArrowPiece;
 import me.samoa.chess.model.GameManager;
 
+/**
+ * Provide the slot information of board
+ * 
+ * @author Koh Shi Jing
+ */
 public class BoardSlotInfo {
   boolean occupied;
   Piece occupiedPiece;

@@ -5,6 +5,11 @@ import java.util.List;
 
 /**
  * Manage all the movements and logical operations of the game
+ * 
+ * @author Casey Teh Qi Shi
+ * @author Wong Man Yi
+ * @author Koh Shi Jing
+ * @author Nadia Ahmad Pirdaus
  */
 public class GameManager {
   public enum GameState {

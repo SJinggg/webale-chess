@@ -1,5 +1,8 @@
 package me.samoa.chess;
 
+/**
+ * @author Casey Teh Qi Shi
+ */
 public class Main {
 
   public static void main(String[] args) {

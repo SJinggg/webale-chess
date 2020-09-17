@@ -4,6 +4,11 @@ import me.samoa.chess.model.GameManager;
 import me.samoa.chess.model.Team;
 import me.samoa.chess.model.GameManager.GameState;
 
+/**
+ * Provide game status information
+ * 
+ * @author Casey Teh Qi Shi
+ */
 public class GameStatusInfo {
   
   private Team currentTurn;

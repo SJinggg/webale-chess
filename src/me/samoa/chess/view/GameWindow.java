@@ -2,6 +2,8 @@ package me.samoa.chess.view;
 
 /**
  * Game Window when the program is open
+ * 
+ * @author Casey Teh Qi Shi
  */
 public class GameWindow implements Window {
   

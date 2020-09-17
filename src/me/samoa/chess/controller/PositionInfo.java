@@ -5,7 +5,11 @@ import me.samoa.chess.model.Piece;
 import me.samoa.chess.model.Team;
 import me.samoa.chess.model.Type;
 
-
+/**
+ * Provide position information of the piece
+ * 
+ * @author Casey Teh Qi Shi
+ */
 public class PositionInfo {
   
   private int row;

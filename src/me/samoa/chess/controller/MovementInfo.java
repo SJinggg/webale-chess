@@ -1,5 +1,10 @@
 package me.samoa.chess.controller;
 
+/**
+ * Provide movement information performed
+ * 
+ * @author Casey Teh Qi Shi
+ */
 public class MovementInfo {
   
   private int row;

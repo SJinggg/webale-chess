@@ -1,5 +1,10 @@
 package me.samoa.chess.controller;
 
+/**
+ * This links the model and view together
+ * 
+ * @author Casey Teh Qi Shi
+ */
 public class API {
   
   private static API instance = null;

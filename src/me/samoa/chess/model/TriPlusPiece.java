@@ -7,6 +7,11 @@ import java.util.List;
  * The Triangle piece can move any number of steps diagonally. It CANNOT skip
  * over other pieces.The Plus piece moves in a straight line in ANY direction. It CANNOT skip over
  * other pieces. This class implements the combination of both
+ * 
+ * @author Casey Teh Qi Shi
+ * @author Wong Man Yi
+ * @author Koh Shi Jing
+ * @author Nadia Ahmad Pirdaus
  */
 
 public class TriPlusPiece extends Piece{

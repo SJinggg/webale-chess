@@ -7,6 +7,11 @@ import java.util.List;
  * The Arrow piece can only move 1 or 2 steps forward at a time. If it reaches
  * the end of the board, it turns around and heads back to the other side. It
  * CANNOT skip over other pieces.
+ * 
+ * @author Casey Teh Qi Shi
+ * @author Wong Man Yi
+ * @author Koh Shi Jing
+ * @author Nadia Ahmad Pirdaus
  */
 
 public class ArrowPiece extends Piece {

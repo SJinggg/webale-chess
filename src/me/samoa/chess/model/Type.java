@@ -2,6 +2,11 @@ package me.samoa.chess.model;
 
 /**
  * Indicates the type of webale piece
+ * 
+ * @author Casey Teh Qi Shi
+ * @author Wong Man Yi
+ * @author Koh Shi Jing
+ * @author Nadia Ahmad Pirdaus
  */
 public enum Type {
 

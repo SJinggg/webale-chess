@@ -2,6 +2,11 @@ package me.samoa.chess.controller;
 
 import java.util.List;
 
+/**
+ * Store each state of the game
+ * 
+ * @author Casey Teh Qi Shi
+ */
 public abstract class State {
 
   public enum Type {
@@ -11,7 +16,7 @@ public abstract class State {
   protected API api;
 
   /**
-   * Consutructor of State class
+   * Constructor of State class
    * 
    * @param api the game API instance
    */

@@ -2,6 +2,11 @@ package me.samoa.chess.model;
 
 /**
  * This represents the chess Board
+ * 
+ * @author Casey Teh Qi Shi
+ * @author Wong Man Yi
+ * @author Koh Shi Jing
+ * @author Nadia Ahmad Pirdaus
  */
 public class Board{
   private Slot[][] slots;

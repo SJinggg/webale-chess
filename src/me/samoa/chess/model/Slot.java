@@ -2,6 +2,11 @@ package me.samoa.chess.model;
 
 /**
  * Represent each slot on the board
+ * 
+ * @author Casey Teh Qi Shi
+ * @author Wong Man Yi
+ * @author Koh Shi Jing
+ * @author Nadia Ahmad Pirdaus
  */
 public class Slot{
   private int row, col;

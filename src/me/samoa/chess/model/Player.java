@@ -5,6 +5,11 @@ import java.util.List;
 
 /**
  * Player class
+ * 
+ * @author Casey Teh Qi Shi
+ * @author Wong Man Yi
+ * @author Koh Shi Jing
+ * @author Nadia Ahmad Pirdaus
  */
 public class Player {
 

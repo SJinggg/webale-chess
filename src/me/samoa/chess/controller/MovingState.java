@@ -9,6 +9,11 @@ import me.samoa.chess.model.Player;
 import me.samoa.chess.model.Slot;
 import me.samoa.chess.model.Team;
 
+/**
+ * Control the movement of the player
+ * 
+ * @author Casey Teh Qi Shi
+ */
 public class MovingState extends State {
 
   private Piece selectedPiece;

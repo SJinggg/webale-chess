@@ -6,6 +6,11 @@ import java.util.List;
 /**
  * The Sun piece can move one step in any direction. It CANNOT skip over other
  * pieces. The player who eats the Sun piece of the opposing team first wins.
+ * 
+ * @author Casey Teh Qi Shi
+ * @author Wong Man Yi
+ * @author Koh Shi Jing
+ * @author Nadia Ahmad Pirdaus
  */
 
 public class SunPiece extends Piece {

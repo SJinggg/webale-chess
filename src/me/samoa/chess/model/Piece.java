@@ -4,6 +4,11 @@ import java.util.List;
 
 /**
  * The Piece with different types and movement details
+ * 
+ * @author Casey Teh Qi Shi
+ * @author Wong Man Yi
+ * @author Koh Shi Jing
+ * @author Nadia Ahmad Pirdaus
  */
 public abstract class Piece {
 

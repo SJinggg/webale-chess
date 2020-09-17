@@ -5,6 +5,11 @@ import java.util.List;
 import me.samoa.chess.model.GameManager;
 import me.samoa.chess.model.GameManager.GameState;
 
+/**
+ * Checking state if the game has finished
+ * 
+ * @author Casey Teh Qi Shi
+ */
 public class CheckState extends State {
 
   public CheckState(API api) {

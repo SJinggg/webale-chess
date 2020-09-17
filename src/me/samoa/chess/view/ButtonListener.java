@@ -9,6 +9,8 @@ import me.samoa.chess.controller.*;
 
 /**
  * The listener for every slot in the Board
+ * 
+ * @author Koh Shi Jing
  */
 public class ButtonListener implements ActionListener {
   private static List<MovementInfo> movementInfos;

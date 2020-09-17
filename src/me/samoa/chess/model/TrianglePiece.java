@@ -8,6 +8,11 @@ import java.util.List;
  * over other pieces.
  * @deprecated
  * Merged into a single class
+ * 
+ * @author Casey Teh Qi Shi
+ * @author Wong Man Yi
+ * @author Koh Shi Jing
+ * @author Nadia Ahmad Pirdaus
  */
 @Deprecated
 public class TrianglePiece extends Piece{

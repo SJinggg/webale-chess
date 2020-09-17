@@ -7,6 +7,9 @@ import javax.imageio.ImageIO;
 import me.samoa.chess.view.GameWindow;
 import me.samoa.chess.view.Window;
 
+/**
+ * @author Casey Teh Qi Shi
+ */
 public class Program {
 
   public static Program getInstance() {
@@ -25,16 +28,6 @@ public class Program {
   }
 
   public void run() {
-    BufferedImage image;
-    try {
-      image = ImageIO.read(getClass().getResourceAsStream("/resources/Capoo.jpg"));
-      int height = image.getHeight();
-      int width = image.getWidth();
-      System.out.println(String.format("Image: %d x %d", width, height));
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    System.out.println("Pre-development testing...");
     mainWindow.open();
   }
 

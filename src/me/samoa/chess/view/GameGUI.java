@@ -14,6 +14,10 @@ import java.awt.Color;
 
 /**
  * This is the main part where GUI functions
+ * 
+ * @author Wong Man Yi
+ * @author Koh Shi Jing
+ * @author Nadia Ahmad Pirdaus
  */
 public class GameGUI extends JFrame{
 

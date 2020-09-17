@@ -15,6 +15,8 @@ import me.samoa.chess.model.Team;
 
 /**
  * The elements of menu that will be used in the game
+ * 
+ * @author Koh Shi Jing
  */
 public class Menu extends JMenuBar {
   private JMenuItem start;

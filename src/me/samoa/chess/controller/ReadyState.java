@@ -2,6 +2,11 @@ package me.samoa.chess.controller;
 
 import java.util.List;
 
+/**
+ * State to start a game
+ * 
+ * @author Casey Teh Qi Shi
+ */
 public class ReadyState extends State {
 
   public ReadyState(API api) {

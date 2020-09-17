@@ -8,6 +8,10 @@ import me.samoa.chess.model.Piece;
 import me.samoa.chess.model.Player;
 import me.samoa.chess.model.Team;
 
+/**
+ * Clear the game and restart 
+ * @author Casey Teh Qi Shi
+ */
 public class ClearState extends State {
 
   public ClearState(API api) {
