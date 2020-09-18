@@ -5,6 +5,11 @@ import java.util.List;
 import me.samoa.chess.model.GameManager;
 import me.samoa.chess.model.GameManager.GameState;
 
+/**
+ * Checking state if the game has finished
+ * 
+ * @author Casey Teh Qi Shi
+ */
 public class CheckState extends State {
 
   public CheckState(API api) {
@@ -31,6 +36,12 @@ public class CheckState extends State {
     throw new IllegalStateException("Locked state");
   }
 
+  /**
+   * To check current state of the game
+   * usage: API.getInstance().getState().onCheck()
+   * 
+   * @return Game status information
+   */
   @Override
   public GameStatusInfo onCheck() {
     if (GameManager.getInstance().getGameState() == GameState.PLAY) {
@@ -41,6 +52,11 @@ public class CheckState extends State {
     return new GameStatusInfo();
   }
 
+  /**
+   * Check type of state
+   * 
+   * @return State type
+   */
   @Override
   public Type getStateType() {
     return Type.Check;

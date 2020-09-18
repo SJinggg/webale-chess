@@ -7,7 +7,11 @@ import me.samoa.chess.model.GameManager;
 import me.samoa.chess.model.Piece;
 import me.samoa.chess.model.Slot;
 
-
+/**
+ * State for chess piece selection
+ * 
+ * @author Casey Teh Qi Shi
+ */
 public class TurnState extends State {
 
   public TurnState(API api) {
@@ -24,7 +28,14 @@ public class TurnState extends State {
     throw new IllegalStateException("Locked state");
   }
 
-  // select piece player wants to move
+  /**
+   * Select the piece player wants to move and check if it is valid
+   * usage: API.getInstance().getState().onSelect()
+   * 
+   * @param row Row of selected slot
+   * @param col Column of selected slot
+   * @return List of Movement Information
+   */
   @Override
   public List<MovementInfo> onSelect(int row, int col) {
     GameManager gameManager = GameManager.getInstance();
@@ -35,7 +46,8 @@ public class TurnState extends State {
     if (occupiedPiece.getPlayer().teamIdentify(gameManager.getCurrentPlayer().getTeam())) {
       List<MovementInfo> information = new ArrayList<>();
       for (final Slot placeableSlot : occupiedPiece.getAllPlaceableSlot()) {
-        boolean hasOpponent = placeableSlot.isOccupied() && placeableSlot.getOccupiedPiece().getPlayer().teamIdentify(occupiedPiece.getPlayer().getOpponentTeam());
+        boolean hasOpponent = placeableSlot.isOccupied() && 
+          placeableSlot.getOccupiedPiece().getPlayer().teamIdentify(occupiedPiece.getPlayer().getOpponentTeam());
         information.add(new MovementInfo(placeableSlot.getRow(), placeableSlot.getCol(), hasOpponent));
       }
       api.setState(new MovingState(api, occupiedPiece));
@@ -54,6 +66,11 @@ public class TurnState extends State {
     throw new IllegalStateException("Locked state");
   }
 
+  /**
+   * Check type of state
+   * 
+   * @return State type
+   */
   @Override
   public Type getStateType() {
     return Type.Turn;

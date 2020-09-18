@@ -5,11 +5,22 @@ import me.samoa.chess.model.Team;
 import me.samoa.chess.model.ArrowPiece;
 import me.samoa.chess.model.GameManager;
 
+/**
+ * Provide the slot information of board
+ * 
+ * @author Koh Shi Jing
+ * @author Wong Man Yi
+ */
 public class BoardSlotInfo {
   boolean occupied;
   Piece occupiedPiece;
   String pieceName;
 
+  /**
+   * This Constructor to initialize all the attributes
+   * @param row row of the slot
+   * @param col column of the slot
+   */
   public BoardSlotInfo(int row, int col) {
     this.occupiedPiece = GameManager.getInstance().getBoard().getSlot(row, col).getOccupiedPiece();
     this.occupied = this.occupiedPiece == null ? false: true;
@@ -31,14 +42,26 @@ public class BoardSlotInfo {
     }
   }
 
+   /**
+   * Check if the slot is occupied
+   * @return <code>true</code> if the slot is occupied; <code>false</code> if the slot is empty 
+   */
   public boolean isOccupied() {
     return this.occupied;
   }
 
+  /**
+   * Get the piece on the slot
+   * @return the chess piece on the slot
+   */
   public Piece getOccupiedPiece() {
     return this.occupiedPiece;
   }
 
+  /**
+   * Get the name of the piece
+   * @return the name of the piece
+   */
   public String getPieceName() {
     return this.pieceName; 
   }

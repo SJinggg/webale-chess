@@ -8,14 +8,22 @@ import me.samoa.chess.model.Piece;
 import me.samoa.chess.model.Player;
 import me.samoa.chess.model.Team;
 
+/**
+ * Clear the game and restart 
+ * @author Casey Teh Qi Shi
+ */
 public class ClearState extends State {
 
   public ClearState(API api) {
     super(api);
   }
 
-  // to create a different instance and reset a new board
-  // usage: API.getInstance().getState().onReset()
+  /**
+   * To create a different instance and reset a new board
+   * usage: API.getInstance().getState().onReset()
+   * 
+   * @return List of Position Information
+   */
   @Override
   public List<PositionInfo> onReset() {
     GameManager.newInstance();
@@ -52,6 +60,11 @@ public class ClearState extends State {
     throw new IllegalStateException("Locked state");
   }
 
+  /**
+   * Check type of state
+   * 
+   * @return State type
+   */
   @Override
   public Type getStateType() {
     return Type.Clear;

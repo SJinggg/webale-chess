@@ -12,16 +12,24 @@ import me.samoa.chess.controller.*;
 
 import java.awt.Color;
 
+/**
+ * This is the main part where GUI functions
+ * 
+ * @author Wong Man Yi
+ * @author Koh Shi Jing
+ * @author Nadia Ahmad Pirdaus
+ */
 public class GameGUI extends JFrame{
-  /**
-	 *
-	 */
+
 	private static final long serialVersionUID = 1L;
   private static JButton[][] buttons = new JButton[8][7];
   private static HashMap<String, BufferedImage> chessImage = new HashMap<>();
   private JPanel informationPanel;
   private static JLabel infoLabel;
 
+  /**
+   * Constructor of GameGUI
+   */
   public GameGUI() {
     super("Webale Chess");
 
@@ -58,15 +66,17 @@ public class GameGUI extends JFrame{
     // Displays a pop-up window to confirm whether or not the player wants to exit the game
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
-				JFrame frame = (JFrame)e.getSource();
 		 
         if (JOptionPane.showConfirmDialog(mpanel, "Are you sure you want to exit the game? Don't forget to save!",
-					  "Exit Game?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-		        setDefaultCloseOperation(EXIT_ON_CLOSE);
+          "Exit Game?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+          setDefaultCloseOperation(EXIT_ON_CLOSE);
 			}
 		});
   }
   
+  /**
+   * Binds image with the chess piece's name
+   */
   public void chessImg() {
     try{
       chessImage.put("Sun RED", ImageIO.read(new File("src/resources/Sun-red.png")));
@@ -96,6 +106,33 @@ public class GameGUI extends JFrame{
     }
   }
 
+  /**
+   * Disable all buttons and clear all icons
+   */
+  public static void disableButtons() {
+    for(int i = 0; i < 8; i++){
+      for(int j = 0; j < 7; j++){
+        buttons[i][j].setIcon(null);
+        buttons[i][j].setEnabled(false);
+      }
+    }
+  }
+  
+  /**
+   * Enable all buttons
+   */
+  public static void enableButtons() {
+    for(int i = 0; i < 8; i++){
+      for(int j = 0; j < 7; j++){
+        buttons[i][j].setEnabled(true);
+      }
+    }
+  }
+
+  /**
+   * Function to rotate the board when switching players
+   * Match the Board slot with each Image if the chess piece exists
+   */
   public static void turnButtons() {
     JButton[][] rot = new JButton[8][7];
 
@@ -113,6 +150,10 @@ public class GameGUI extends JFrame{
     chessWImage();
   }
 
+  /**
+   * Clears pieces displayed on board and re-adds them accordingly
+   * Match the Board slot with each Image if the chess piece exists
+   */
   public static void chessWImage() {
     for(int i = 0; i < 8; i++){
       for(int j = 0; j < 7; j++){
@@ -133,14 +174,28 @@ public class GameGUI extends JFrame{
     }
   }
 
+  /**
+   * Label for display message of game status, movement, etc.
+   * 
+   * @param msg the message to be displayed
+   */
   public static void setLabelMsg(String msg){
     infoLabel.setText(msg);
   }
 
+  /**
+   * Highlights valid possible movement of the selected chess piece
+   *  
+   * @param row The row coordinate of the selected chess piece
+   * @param col The column coordinate of the selected chess piece
+   */
   public static void possibleMoves(int row, int col) {
     buttons[row][col].setBackground(Color.yellow);
   }
 
+  /**
+   * Reset the highlighted possible movement if the player clicks on the chess piece again
+   */
   public static void resetMoves() {
     for(int i = 0; i < 8; i++){
       for(int j = 0; j < 7; j++){
