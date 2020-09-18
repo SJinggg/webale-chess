@@ -77,10 +77,11 @@ public class Menu extends JMenuBar {
       @Override
       public void actionPerformed(ActionEvent evt) {
         GameManager gameManager = GameManager.getInstance();
-        String inputValue = JOptionPane.showInputDialog("Please input the name of the file to save");
+        String inputValue = JOptionPane.showInputDialog(null, "Please input what you would like to save your file as:", "Save Game", JOptionPane.QUESTION_MESSAGE);
         if (inputValue != null && !inputValue.equals("")) {
           inputValue = inputValue.replaceAll("\\.", "");
           gameManager.saveGame("src/save/" + inputValue + ".txt");
+          JOptionPane.showMessageDialog(null, "Game saved successfully!", "Save game", JOptionPane.INFORMATION_MESSAGE);
         }
       }
     };
@@ -92,13 +93,13 @@ public class Menu extends JMenuBar {
         String inputValue = "";
         boolean fileExist = false;
         while (inputValue == null || inputValue.equals("") || !fileExist) {
-          inputValue = JOptionPane.showInputDialog("Please input the name of the file to load");
+          inputValue = JOptionPane.showInputDialog(null, "Please input the name of your save file:", "Load Game", JOptionPane.QUESTION_MESSAGE);
           if(inputValue != null) {
             try {
               gameManager.loadGame("src/save/" + inputValue + ".txt");
-              fileExist = true;
+              fileExist = true; 
             }catch(FileNotFoundException e) {
-              JOptionPane.showMessageDialog(null, "File " + inputValue + ".txt does not exist");
+              JOptionPane.showMessageDialog(null, "File " + inputValue + ".txt does not exist", "Wrong file?", JOptionPane.WARNING_MESSAGE);
               fileExist = false;
             }
           }
@@ -118,6 +119,7 @@ public class Menu extends JMenuBar {
         }
         startAction.setEnabled(false);
         GameGUI.chessWImage();
+        JOptionPane.showMessageDialog(null, "Game loaded successfully!", "Loaded game", JOptionPane.INFORMATION_MESSAGE);
       }
     };
 
