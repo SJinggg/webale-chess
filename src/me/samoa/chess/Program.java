@@ -1,9 +1,5 @@
 package me.samoa.chess;
 
-import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
-
 import me.samoa.chess.view.GameWindow;
 import me.samoa.chess.view.Window;
 
