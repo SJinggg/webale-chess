@@ -3,6 +3,7 @@ package me.samoa.chess.view;
 import javax.swing.*;
 
 import java.awt.event.*;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import me.samoa.chess.controller.API;
@@ -33,9 +34,11 @@ public class Menu extends JMenuBar {
     Action endAction = new AbstractAction("End") {
       @Override
       public void actionPerformed(ActionEvent evt) {
+        if(GameManager.getInstance().getCurrentPlayer().getPlayerName() == "bluePlayer") GameGUI.turnButtons();
         API api = API.getInstance();
         api.setState(new ClearState(api));
         startAction.setEnabled(true);
+        GameGUI.disableButtons();
         GameGUI.setLabelMsg("Press Start to begin");
         setEnabled(false);
       }
@@ -45,6 +48,7 @@ public class Menu extends JMenuBar {
       @Override
       public void actionPerformed(ActionEvent evt) {
         try {
+          GameGUI.enableButtons();
           List<PositionInfo> postionInfos = API.getInstance().getState().onReset();
           for (PositionInfo positionInfo : postionInfos) {
             System.out.println(String.format("[%d %d] : %s %s %s", positionInfo.getRow(), positionInfo.getCol(),
@@ -86,9 +90,20 @@ public class Menu extends JMenuBar {
       public void actionPerformed(ActionEvent evt) {
         GameManager gameManager = GameManager.getInstance();
         String inputValue = "";
-        while (inputValue == null || inputValue.equals(""))
+        boolean fileExist = false;
+        while (inputValue == null || inputValue.equals("") || !fileExist) {
           inputValue = JOptionPane.showInputDialog("Please input the name of the file to load");
-        gameManager.loadGame("src/save/" + inputValue + ".txt");
+          if(inputValue != null) {
+            try {
+              gameManager.loadGame("src/save/" + inputValue + ".txt");
+              fileExist = true;
+            }catch(FileNotFoundException e) {
+              JOptionPane.showMessageDialog(null, "File " + inputValue + ".txt does not exist");
+              fileExist = false;
+            }
+          }
+          else return;
+        }
         API api = API.getInstance();
         api.setState(new ReadyState(api));
         try {

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.*;
 
 import me.samoa.chess.controller.*;
+import me.samoa.chess.model.GameManager;
 
 /**
  * The listener for every slot in the Board
@@ -23,12 +24,12 @@ public class ButtonListener implements ActionListener {
     clicked.setBackground(Color.yellow);
 
     System.out.println(clicked.getName());
-    //perform movement here...? // listener not inside control
-    GameGUI.setLabelMsg("Select on" + clicked.getName());
+    String selPiece = GameManager.getInstance().getBoard().getSlotOccupied(selectedRow, selectedCol) ? GameManager.getInstance().getBoard().getSlot(selectedRow, selectedCol).getOccupiedPiece().getType().toString() + " " : "";
+    GameGUI.setLabelMsg("Selected " + selPiece + "on " + clicked.getName());
     if(movementInfos == null){
       movementInfos = API.getInstance().getState().onSelect(selectedRow, selectedCol);
       if (movementInfos == null) {
-        GameGUI.setLabelMsg("Invalid");
+        GameGUI.setLabelMsg("Invalid movement");
         System.out.println(API.getInstance().getState().getStateType() + "State");
         clicked.setBackground(Color.white);
         return;
@@ -61,6 +62,7 @@ public class ButtonListener implements ActionListener {
         JOptionPane.showMessageDialog(null, statusInfo.getWinner() + " has won!",  
         "information", JOptionPane.INFORMATION_MESSAGE);
         Menu.startAction.setEnabled(true);
+        GameGUI.disableButtons();
       }
       System.out.println();
       movementInfos = null;

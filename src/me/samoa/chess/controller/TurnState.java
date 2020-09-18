@@ -46,7 +46,8 @@ public class TurnState extends State {
     if (occupiedPiece.getPlayer().teamIdentify(gameManager.getCurrentPlayer().getTeam())) {
       List<MovementInfo> information = new ArrayList<>();
       for (final Slot placeableSlot : occupiedPiece.getAllPlaceableSlot()) {
-        boolean hasOpponent = placeableSlot.isOccupied() && placeableSlot.getOccupiedPiece().getPlayer().teamIdentify(occupiedPiece.getPlayer().getOpponentTeam());
+        boolean hasOpponent = placeableSlot.isOccupied() && 
+          placeableSlot.getOccupiedPiece().getPlayer().teamIdentify(occupiedPiece.getPlayer().getOpponentTeam());
         information.add(new MovementInfo(placeableSlot.getRow(), placeableSlot.getCol(), hasOpponent));
       }
       api.setState(new MovingState(api, occupiedPiece));
