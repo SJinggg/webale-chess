@@ -26,7 +26,7 @@ public class ButtonListener implements ActionListener {
     System.out.println(clicked.getName());
     String selPiece = GameManager.getInstance().getBoard().getSlotOccupied(selectedRow, selectedCol) ? GameManager.getInstance().getBoard().getSlot(selectedRow, selectedCol).getOccupiedPiece().getType().toString() + " " : "";
     GameGUI.setLabelMsg("Selected " + selPiece + "on " + clicked.getName());
-    if(movementInfos == null){
+    if(movementInfos == null) {
       movementInfos = API.getInstance().getState().onSelect(selectedRow, selectedCol);
       if (movementInfos == null) {
         GameGUI.setLabelMsg("Invalid movement");

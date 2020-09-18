@@ -15,7 +15,7 @@ public enum Team {
    * toString() function
    */
   @Override
-  public String toString(){
+  public String toString() {
     return this == RED ? "RED" : "BLUE";
   }
 }

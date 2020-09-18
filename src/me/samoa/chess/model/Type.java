@@ -15,7 +15,7 @@ public enum Type {
   /**
    * toString() function
    */
-  public String toString(){
+  public String toString() {
     switch(this){
     case Arrow:
       return "Arrow";
@@ -37,7 +37,7 @@ public enum Type {
    * @param str the string to be matched with the type
    * @return return the type
    */
-  public static Type getType (String str){
+  public static Type getType (String str) {
     if(str.equals(Arrow.toString()))
       return Arrow;
     else if(str.equals(Chevron.toString()))

@@ -10,6 +10,7 @@ import me.samoa.chess.model.Slot;
 import me.samoa.chess.model.Team;
 
 /**
+ * State Design Pattern
  * Control the movement of the player
  * 
  * @author Casey Teh Qi Shi

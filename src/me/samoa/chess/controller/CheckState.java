@@ -6,6 +6,7 @@ import me.samoa.chess.model.GameManager;
 import me.samoa.chess.model.GameManager.GameState;
 
 /**
+ * State Design Pattern
  * Checking state if the game has finished
  * 
  * @author Casey Teh Qi Shi

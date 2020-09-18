@@ -14,7 +14,7 @@ import java.util.List;
  * @author Nadia Ahmad Pirdaus
  */
 
-public class TriPlusPiece extends Piece{
+public class TriPlusPiece extends Piece {
 
   /**
    * Constructor of Triangle and Plus Piece
@@ -50,7 +50,7 @@ public class TriPlusPiece extends Piece{
    * @param slot the slot of the piece intends to move to
    */
   @Override
-  public void onMove(Slot slot) {}
+  public void onMove(Slot slot) { }
 
   
   /**

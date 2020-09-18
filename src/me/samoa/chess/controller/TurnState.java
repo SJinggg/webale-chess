@@ -8,6 +8,7 @@ import me.samoa.chess.model.Piece;
 import me.samoa.chess.model.Slot;
 
 /**
+ * State Design Pattern
  * State for chess piece selection
  * 
  * @author Casey Teh Qi Shi

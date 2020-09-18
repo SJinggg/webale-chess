@@ -12,6 +12,7 @@ import java.util.List;
  * @author Nadia Ahmad Pirdaus
  */
 public class GameManager {
+  
   public enum GameState {
     PLAY, END
   };
@@ -112,16 +113,16 @@ public class GameManager {
     if(!directory.exists()) {
       directory.mkdir();
     }
-    try{
+    try {
       PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(new File(file))));
       List<Piece> piecesBlue = gameManager.getPlayer(Team.BLUE).getPieces();
-      for(Piece p: piecesBlue){
+      for(Piece p: piecesBlue) {
         StringBuilder sB = new StringBuilder().append(p.getPlayer().getTeam()).append(":").append(p.getPositionR())
           .append(":").append(p.getPositionC()).append(":").append(p.getType()).append(":").append(p.isEaten());
         pw.println(sB.toString());
       }
       List<Piece> piecesRed = gameManager.getPlayer(Team.RED).getPieces();
-      for(Piece p: piecesRed){
+      for(Piece p: piecesRed) {
         StringBuilder sB = new StringBuilder().append(p.getPlayer().getTeam()).append(":").append(p.getPositionR())
           .append(":").append(p.getPositionC()).append(":").append(p.getType()).append(":").append(p.isEaten());
         pw.println(sB.toString());
@@ -129,7 +130,7 @@ public class GameManager {
       pw.println("CurrentPlayer:" + gameManager.getCurrentPlayer().getTeam());
       pw.flush();
       pw.close();
-    } catch (IOException e){
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }
@@ -139,22 +140,22 @@ public class GameManager {
    * 
    * @param file the filename where the game state should be loaded from
    */
-  public void loadGame(String file) throws FileNotFoundException{
+  public void loadGame(String file) throws FileNotFoundException {
     GameManager gameManager = GameManager.getInstance();
     gameManager.getBoard().clearBoard();
     Board board = gameManager.getBoard();
     BufferedReader input;
-    try{
+    try {
       input = new BufferedReader(new FileReader(new File(file)));
       
       String readLine;
       while ((readLine = input.readLine()) != null) {
         String[] tokens = readLine.split(":");
-        if(tokens[0].equals("CurrentPlayer")){
+        if(tokens[0].equals("CurrentPlayer")) {
           if(tokens[1].equals("RED")){
             gameManager.setCurrentPlayer(Team.RED);
           }
-          else{
+          else {
             gameManager.setCurrentPlayer(Team.BLUE);
           }
         } else {
@@ -164,8 +165,8 @@ public class GameManager {
           Type type = Type.getType(tokens[3]);
           Boolean isEaten = tokens[4].equals("false") ? false: true;
           List<Piece> pieces = player.getPieces();
-          for(Piece p: pieces){
-            if(p.getType() == type){
+          for(Piece p: pieces) {
+            if(p.getType() == type) {
               p.setPositionR(r);
               p.setPositionC(c);
               if(isEaten)
@@ -177,7 +178,7 @@ public class GameManager {
         }
       }
       input.close();
-    } catch(RuntimeException e){
+    } catch(RuntimeException e) {
       e.printStackTrace();
     } catch (FileNotFoundException e) {
       throw e;

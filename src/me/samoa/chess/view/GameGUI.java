@@ -65,7 +65,7 @@ public class GameGUI extends JFrame{
     setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     // Displays a pop-up window to confirm whether or not the player wants to exit the game
 		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e){
+			public void windowClosing(WindowEvent e) {
 		 
         if (JOptionPane.showConfirmDialog(mpanel, "Are you sure you want to exit the game? Don't forget to save!",
           "Exit Game?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
@@ -78,7 +78,7 @@ public class GameGUI extends JFrame{
    * Binds image with the chess piece's name
    */
   public void chessImg() {
-    try{
+    try {
       chessImage.put("Sun RED", ImageIO.read(new File("src/resources/Sun-red.png")));
       chessImage.put("Sun BLUE", ImageIO.read(new File("src/resources/Sun-blue.png")));
       chessImage.put("Sun BLUE", ImageIO.read(new File("src/resources/Sun-blue.png")));
@@ -110,8 +110,8 @@ public class GameGUI extends JFrame{
    * Disable all buttons and clear all icons
    */
   public static void disableButtons() {
-    for(int i = 0; i < 8; i++){
-      for(int j = 0; j < 7; j++){
+    for(int i = 0; i < 8; i++) {
+      for(int j = 0; j < 7; j++) {
         buttons[i][j].setIcon(null);
         buttons[i][j].setEnabled(false);
       }
@@ -122,8 +122,8 @@ public class GameGUI extends JFrame{
    * Enable all buttons
    */
   public static void enableButtons() {
-    for(int i = 0; i < 8; i++){
-      for(int j = 0; j < 7; j++){
+    for(int i = 0; i < 8; i++) {
+      for(int j = 0; j < 7; j++) {
         buttons[i][j].setEnabled(true);
       }
     }
@@ -137,9 +137,9 @@ public class GameGUI extends JFrame{
     JButton[][] rot = new JButton[8][7];
 
     int n = 0;
-    for(int i = 7; i >= 0; i--){
+    for(int i = 7; i >= 0; i--) {
       int m = 0;
-      for(int j = 6; j >= 0; j--){
+      for(int j = 6; j >= 0; j--) {
         rot[i][j] = buttons[n][m];
         rot[i][j].setName("("+i+","+j+")");
         m++;
@@ -155,17 +155,17 @@ public class GameGUI extends JFrame{
    * match the Board slot with each Image if the chess piece exists
    */
   public static void chessWImage() {
-    for(int i = 0; i < 8; i++){
-      for(int j = 0; j < 7; j++){
+    for(int i = 0; i < 8; i++) {
+      for(int j = 0; j < 7; j++) {
         buttons[i][j].setIcon(null);
         buttons[i][j].setBackground(Color.white);
       }
     }
-    for(int i = 0; i < 8; i++){
-      for(int j = 0; j < 7; j++){
+    for(int i = 0; i < 8; i++) {
+      for(int j = 0; j < 7; j++) {
         BoardSlotInfo slotInfo = new BoardSlotInfo(i, j);
-        if(slotInfo.isOccupied()){
-          if(chessImage.containsKey(slotInfo.getPieceName())){
+        if(slotInfo.isOccupied()) {
+          if(chessImage.containsKey(slotInfo.getPieceName())) {
             Image imgIcon = (Image)chessImage.get(slotInfo.getPieceName());
             buttons[i][j].setIcon(new ImageIcon(imgIcon));
           }
@@ -197,8 +197,8 @@ public class GameGUI extends JFrame{
    * Reset the highlighted possible movement if the player clicks on the chess piece again
    */
   public static void resetMoves() {
-    for(int i = 0; i < 8; i++){
-      for(int j = 0; j < 7; j++){
+    for(int i = 0; i < 8; i++) {
+      for(int j = 0; j < 7; j++) {
         buttons[i][j].setBackground(Color.white);
       }
     }

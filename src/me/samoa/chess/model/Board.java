@@ -8,7 +8,8 @@ package me.samoa.chess.model;
  * @author Koh Shi Jing
  * @author Nadia Ahmad Pirdaus
  */
-public class Board{
+public class Board {
+
   private Slot[][] slots;
   private final int BOARDHEIGHT = 8, BOARDWIDTH = 7;
 
@@ -18,8 +19,8 @@ public class Board{
   public Board() {
     slots = new Slot[BOARDHEIGHT][BOARDWIDTH];
 
-    for(int i = 0; i < BOARDHEIGHT; i++){
-      for(int j = 0; j < BOARDWIDTH; j++){
+    for(int i = 0; i < BOARDHEIGHT; i++) {
+      for(int j = 0; j < BOARDWIDTH; j++) {
         slots[i][j] = new Slot(i, j);
       }
     }
@@ -30,7 +31,7 @@ public class Board{
    * 
    * @return the board's height
    */
-  public int getBoardHeight(){
+  public int getBoardHeight() {
     return BOARDHEIGHT; 
   }
 
@@ -61,7 +62,7 @@ public class Board{
    * @param col the column of the board slot 
    * @return <code>true</code>if slot is occupied; <code>false</code> otherwise. 
    */
-  public boolean getSlotOccupied(int row, int col){
+  public boolean getSlotOccupied(int row, int col) {
     return slots[row][col].isOccupied();
   }
 
@@ -72,7 +73,7 @@ public class Board{
    * @param row the row coordination of slot in the board
    * @param col the column coordination of slot in the board 
    */
-  public void setSlotOccupiedPiece(Piece p, int row, int col){
+  public void setSlotOccupiedPiece(Piece p, int row, int col) {
     slots[row][col].setOccupiedPiece(p);
   }
 
@@ -82,7 +83,7 @@ public class Board{
    * @param row the row coordination of slot where has been occupied previously
    * @param col the column coordination of slot where has been occupied previously
    */
-  public void removeSlotOccupation(int row, int col){
+  public void removeSlotOccupation(int row, int col) {
     slots[row][col].setOccupiedPiece(null);
   }
 
@@ -91,8 +92,8 @@ public class Board{
    * 
    */
   public void clearBoard(){
-    for(int i = 0; i < BOARDHEIGHT; i++){
-      for(int j = 0; j < BOARDWIDTH; j++){
+    for(int i = 0; i < BOARDHEIGHT; i++) {
+      for(int j = 0; j < BOARDWIDTH; j++) {
         removeSlotOccupation(i,j);
       }
     }

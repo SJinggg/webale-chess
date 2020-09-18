@@ -8,7 +8,8 @@ package me.samoa.chess.model;
  * @author Koh Shi Jing
  * @author Nadia Ahmad Pirdaus
  */
-public class Slot{
+public class Slot {
+  
   private int row, col;
   private Piece occupiedPiece;
 

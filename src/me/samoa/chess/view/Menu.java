@@ -9,12 +9,9 @@ import java.util.List;
 import me.samoa.chess.controller.API;
 import me.samoa.chess.controller.ClearState;
 import me.samoa.chess.controller.GameStatusInfo;
-import me.samoa.chess.controller.MovementInfo;
 import me.samoa.chess.controller.PositionInfo;
 import me.samoa.chess.controller.ReadyState;
 import me.samoa.chess.model.GameManager;
-import me.samoa.chess.model.Team;
-import me.samoa.chess.model.GameManager.GameState;
 
 /**
  * The elements of menu that will be used in the game

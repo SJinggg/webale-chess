@@ -9,6 +9,7 @@ import me.samoa.chess.model.Player;
 import me.samoa.chess.model.Team;
 
 /**
+ * State Design Pattern
  * Clear the game and restart 
  * @author Casey Teh Qi Shi
  */

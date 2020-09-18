@@ -3,6 +3,7 @@ package me.samoa.chess.controller;
 import java.util.List;
 
 /**
+ * State Design Pattern
  * Store each state of the game
  * 
  * @author Casey Teh Qi Shi

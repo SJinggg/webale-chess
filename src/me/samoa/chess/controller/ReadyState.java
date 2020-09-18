@@ -3,6 +3,7 @@ package me.samoa.chess.controller;
 import java.util.List;
 
 /**
+ * State Design Pattern
  * State to start a game
  * 
  * @author Casey Teh Qi Shi

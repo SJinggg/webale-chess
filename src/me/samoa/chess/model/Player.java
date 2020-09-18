@@ -76,7 +76,7 @@ public class Player {
    * 
    * @return a list of pieces
    */
-  public void pushPieceToEnd(Piece p){
+  public void pushPieceToEnd(Piece p) {
     this.pieces.remove(p);
     this.pieces.add(p);
   }
@@ -86,7 +86,7 @@ public class Player {
    * 
    * @return list of chess pieces
    */
-  public List<Piece> getPieces(){
+  public List<Piece> getPieces() {
     return this.pieces;
   }
 
@@ -95,9 +95,9 @@ public class Player {
    * 
    * @return player's Sun Piece
    */
-  public SunPiece getSunPiece(){
-    for(Piece p: pieces){
-      if(p.getType() == Type.Sun){
+  public SunPiece getSunPiece() {
+    for(Piece p: pieces) {
+      if(p.getType() == Type.Sun) {
         return (SunPiece)p;
       }
     }

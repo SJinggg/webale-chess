@@ -15,7 +15,7 @@ import java.util.List;
  * @author Nadia Ahmad Pirdaus
  */
 @Deprecated
-public class TrianglePiece extends Piece{
+public class TrianglePiece extends Piece {
 
   /**
    * Constructor of Triangle Piece
@@ -35,7 +35,7 @@ public class TrianglePiece extends Piece{
    * @param turn the number of turn
    */
   @Override
-  public void onTurn(int turn) {}
+  public void onTurn(int turn) { }
 
   /**
    * On move movement of webale piece
@@ -43,7 +43,7 @@ public class TrianglePiece extends Piece{
    * @param slot the slot of the piece intends to move to
    */
   @Override
-  public void onMove(Slot slot) {}
+  public void onMove(Slot slot) { }
 
   /**
    * Get all placeable slot for this piece on the webale board

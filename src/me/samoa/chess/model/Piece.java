@@ -44,7 +44,7 @@ public abstract class Piece {
    * 
    * @return the row of the webale piece
    */
-  public int getPositionR(){
+  public int getPositionR() {
     return positionR;
   }
 
@@ -53,7 +53,7 @@ public abstract class Piece {
    * 
    * @return the column of the webale piece
    */
-  public int getPositionC(){
+  public int getPositionC() {
     return positionC;
   }
 
@@ -71,7 +71,7 @@ public abstract class Piece {
    * 
    * @param r row coordination to be set.
    */
-  public synchronized void setPositionR(int r){
+  public synchronized void setPositionR(int r) {
     this.positionR = r;
   }
 
@@ -80,7 +80,7 @@ public abstract class Piece {
    * 
    * @param c column coordination to be set
    */
-  public synchronized void setPositionC(int c){
+  public synchronized void setPositionC(int c) {
     this.positionC = c;
   }
 
@@ -118,7 +118,7 @@ public abstract class Piece {
    * @param slot the selected slot
    * @return the movement validation
    */
-  public boolean tryMove(Slot slot){
+  public boolean tryMove(Slot slot) {
     for (Slot placeableSlot : getAllPlaceableSlot()) {
       if (placeableSlot.equals(slot)) {
         if (placeableSlot.isOccupied()) {

@@ -15,6 +15,7 @@ import java.util.List;
  */
 
 public class ArrowPiece extends Piece {
+  
   private boolean reachEnd = false;
 
   /**
@@ -44,8 +45,7 @@ public class ArrowPiece extends Piece {
    * @param turn the number of turn
    */
   @Override
-  public void onTurn(int turn) {
-  }
+  public void onTurn(int turn) { }
 
   /**
    * Movement control for the selected slot
