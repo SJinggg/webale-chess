@@ -107,6 +107,29 @@ public class GameGUI extends JFrame{
   }
 
   /**
+   * Disable all buttons and clear all icons
+   */
+  public static void disableButtons() {
+    for(int i = 0; i < 8; i++){
+      for(int j = 0; j < 7; j++){
+        buttons[i][j].setIcon(null);
+        buttons[i][j].setEnabled(false);
+      }
+    }
+  }
+  
+  /**
+   * Enable all buttons
+   */
+  public static void enableButtons() {
+    for(int i = 0; i < 8; i++){
+      for(int j = 0; j < 7; j++){
+        buttons[i][j].setEnabled(true);
+      }
+    }
+  }
+
+  /**
    * Function to rotate the board when switching players
    * Match the Board slot with each Image if the chess piece exists
    */

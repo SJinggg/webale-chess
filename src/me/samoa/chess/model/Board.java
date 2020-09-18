@@ -26,19 +26,6 @@ public class Board{
   }
 
   /**
-   * This function will flip the board
-   */
-  public void turnBoard() {
-    int n = 0;
-    for(int i = BOARDHEIGHT; i >= 0; i--){
-      int m = 0;
-      for(int j = BOARDWIDTH; j >= 0; j--){
-        slots[n][m] = new Slot(i, j);
-      }
-    }
-  }
-
-  /**
    * This function returns the board height
    * 
    * @return the board's height
