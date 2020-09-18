@@ -118,6 +118,7 @@ public class Menu extends JMenuBar {
         }
         startAction.setEnabled(false);
         GameGUI.chessWImage();
+        GameGUI.enableButtons();
       }
     };
 
