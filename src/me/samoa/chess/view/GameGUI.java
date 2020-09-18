@@ -130,8 +130,8 @@ public class GameGUI extends JFrame{
   }
 
   /**
-   * Function to rotate the board when switching players
-   * Match the Board slot with each Image if the chess piece exists
+   * Function to rotate the board when switching players and
+   * match the Board slot with each Image if the chess piece exists
    */
   public static void turnButtons() {
     JButton[][] rot = new JButton[8][7];
@@ -151,8 +151,8 @@ public class GameGUI extends JFrame{
   }
 
   /**
-   * Clears pieces displayed on board and re-adds them accordingly
-   * Match the Board slot with each Image if the chess piece exists
+   * Clears pieces displayed on board and re-adds them accordingly and 
+   * match the Board slot with each Image if the chess piece exists
    */
   public static void chessWImage() {
     for(int i = 0; i < 8; i++){

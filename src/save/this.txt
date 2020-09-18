@@ -6,8 +6,8 @@ BLUE:0:5:Triangle:false
 BLUE:0:0:Plus:false
 BLUE:0:6:Plus:false
 BLUE:1:0:Arrow:false
-BLUE:1:2:Arrow:false
-BLUE:3:4:Arrow:false
+BLUE:3:2:Arrow:false
+BLUE:1:4:Arrow:false
 BLUE:1:6:Arrow:false
 RED:7:3:Sun:false
 RED:7:2:Chevron:false
