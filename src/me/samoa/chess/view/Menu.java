@@ -8,10 +8,12 @@ import java.util.List;
 import me.samoa.chess.controller.API;
 import me.samoa.chess.controller.ClearState;
 import me.samoa.chess.controller.GameStatusInfo;
+import me.samoa.chess.controller.MovementInfo;
 import me.samoa.chess.controller.PositionInfo;
 import me.samoa.chess.controller.ReadyState;
 import me.samoa.chess.model.GameManager;
 import me.samoa.chess.model.Team;
+import me.samoa.chess.model.GameManager.GameState;
 
 public class Menu extends JMenuBar {
   private JMenuItem start;
@@ -36,6 +38,7 @@ public class Menu extends JMenuBar {
     startAction = new AbstractAction("Start") {
       @Override
       public void actionPerformed(ActionEvent evt) {
+        GameStatusInfo previousStatus = new GameStatusInfo();
         try {
           List<PositionInfo> postionInfos = API.getInstance().getState().onReset();
           for (PositionInfo positionInfo : postionInfos) {
@@ -52,9 +55,12 @@ public class Menu extends JMenuBar {
           GameGUI.setLabelMsg(String.format("Game Status: %s, Current Turn: %s, Winner: %s", initState.getStatus(),
               initState.getCurrentTurn(), initState.getWinner()));
           System.out.println();
+          if(initState.getCurrentTurn() != previousStatus.getCurrentTurn())
+          GameGUI.turnButtons();
         } catch (Exception e) {
           e.printStackTrace();
         }
+        
         setEnabled(false);
         endAction.setEnabled(true);
         GameGUI.chessWImage();
@@ -78,6 +84,8 @@ public class Menu extends JMenuBar {
       public void actionPerformed(ActionEvent evt) {
         GameManager gameManager = GameManager.getInstance();
         String inputValue = "";
+        GameStatusInfo previousStatus = new GameStatusInfo();
+        System.out.println(previousStatus.getCurrentTurn());
         while (inputValue == null || inputValue.equals(""))
           inputValue = JOptionPane.showInputDialog("Please input the name of the file to load");
         gameManager.loadGame("src/save/" + inputValue + ".txt");
@@ -88,7 +96,8 @@ public class Menu extends JMenuBar {
           GameGUI.setLabelMsg(String.format("Game Status: %s, Current Turn: %s, Winner: %s",
           loadState.getStatus(), loadState.getCurrentTurn(), loadState.getWinner()));
           System.out.println();
-          if(loadState.getCurrentTurn() == Team.BLUE)
+          System.out.println(loadState.getCurrentTurn());
+          if(loadState.getCurrentTurn() != previousStatus.getCurrentTurn())
             GameGUI.turnButtons();
         } catch (Exception e) {
           e.printStackTrace();
