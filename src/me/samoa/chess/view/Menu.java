@@ -9,12 +9,10 @@ import java.util.List;
 import me.samoa.chess.controller.API;
 import me.samoa.chess.controller.ClearState;
 import me.samoa.chess.controller.GameStatusInfo;
-import me.samoa.chess.controller.MovementInfo;
 import me.samoa.chess.controller.PositionInfo;
 import me.samoa.chess.controller.ReadyState;
 import me.samoa.chess.model.GameManager;
 import me.samoa.chess.model.Team;
-import me.samoa.chess.model.GameManager.GameState;
 
 /**
  * The elements of menu that will be used in the game
@@ -40,8 +38,12 @@ public class Menu extends JMenuBar {
         API api = API.getInstance();
         api.setState(new ClearState(api));
         startAction.setEnabled(true);
+        GameStatusInfo previousStatus = new GameStatusInfo();
         GameGUI.disableButtons();
         GameGUI.setLabelMsg("Press Start to begin");
+        if(previousStatus.getCurrentTurn() == Team.BLUE){
+          GameGUI.turnButtons();
+        }
         setEnabled(false);
       }
     };
@@ -119,9 +121,11 @@ public class Menu extends JMenuBar {
           GameGUI.setLabelMsg(String.format("Game Status: %s, Current Turn: %s, Winner: %s",
           loadState.getStatus(), loadState.getCurrentTurn(), loadState.getWinner()));
           System.out.println();
-          System.out.println(loadState.getCurrentTurn());
-          if(loadState.getCurrentTurn() != previousStatus.getCurrentTurn())
+          
+          if(loadState.getCurrentTurn() != previousStatus.getCurrentTurn()){
             GameGUI.turnButtons();
+            System.out.println("turn");
+          }
         } catch (Exception e) {
           e.printStackTrace();
         }
