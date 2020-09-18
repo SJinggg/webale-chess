@@ -4,23 +4,6 @@ This project is a Webale Chess game which is a GUI-based Java Application chess 
 
 ![Screenshot of Program](./webale-screenshot.PNG "Screenshot of Program")
 
-## Webale Chess Pieces
-
-### The Sun
-The Sun can only move one step in any direction. The game ends when the Sun is captured by the other side.
-
-### Chevron
-The Chevron moves in an L shape: 2 steps in one direction then 1 step perpendicular to it. (Similar to the Knight in the normal chess.) It is the only piece that can skip over the other pieces.
-
-### Triangle
-The Triangle can move any number of steps diagonally.
-
-### Plus
-The Plus can move any number of steps up and down, or left and right.
-
-### Arrow
-The Arrow can only move 1 or 2 steps forward each time, but when it reaches the other edge of the board, it turns around and heads back in the opposite direction.
-
 ## Special Features
 Every 2 rounds of each team, all its Triangle pieces will transform to Plus pieces and vice versa.
 
