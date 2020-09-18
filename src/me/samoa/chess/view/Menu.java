@@ -126,6 +126,8 @@ public class Menu extends JMenuBar {
           e.printStackTrace();
         }
         startAction.setEnabled(false);
+        endAction.setEnabled(true);
+        GameGUI.enableButtons();
         GameGUI.chessWImage();
         JOptionPane.showMessageDialog(null, "Game loaded successfully!", "Loaded game", JOptionPane.INFORMATION_MESSAGE);
       }
