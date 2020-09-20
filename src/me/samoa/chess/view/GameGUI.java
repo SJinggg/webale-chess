@@ -10,8 +10,6 @@ import java.util.*;
 import java.io.*;
 import me.samoa.chess.controller.*;
 
-import java.awt.Color;
-
 /**
  * This is the main part where GUI functions
  * 
@@ -19,9 +17,9 @@ import java.awt.Color;
  * @author Koh Shi Jing
  * @author Nadia Ahmad Pirdaus
  */
-public class GameGUI extends JFrame{
+public class GameGUI extends JFrame {
 
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
   private static JButton[][] buttons = new JButton[8][7];
   private static HashMap<String, BufferedImage> chessImage = new HashMap<>();
   private JPanel informationPanel;
@@ -37,7 +35,7 @@ public class GameGUI extends JFrame{
 
     super.setJMenuBar(new Menu());
 
-    JPanel mpanel = new JPanel(new GridLayout(8,7));
+    JPanel mpanel = new JPanel(new GridLayout(8, 7));
 
     informationPanel = new JPanel();
 
@@ -48,11 +46,11 @@ public class GameGUI extends JFrame{
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 7; j++) {
         buttons[i][j] = new JButton();
-        buttons[i][j].setName("("+i+","+j+")");
+        buttons[i][j].setName("(" + i + "," + j + ")");
         buttons[i][j].setBackground(Color.WHITE);
         buttons[i][j].setBorder(new LineBorder(Color.BLUE));
         buttons[i][j].addActionListener(new ButtonListener());
-        mpanel.add(buttons[i][j]); 
+        mpanel.add(buttons[i][j]);
       }
     }
 
@@ -71,7 +69,12 @@ public class GameGUI extends JFrame{
           "Exit Game?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
           setDefaultCloseOperation(EXIT_ON_CLOSE);
 			}
-		});
+    });
+    addComponentListener(new ComponentAdapter() {
+      public void componentResized(ComponentEvent componentEvent) {
+        chessWImage();
+      }
+  });
   }
   
   /**
@@ -167,7 +170,8 @@ public class GameGUI extends JFrame{
         if(slotInfo.isOccupied()) {
           if(chessImage.containsKey(slotInfo.getPieceName())) {
             Image imgIcon = (Image)chessImage.get(slotInfo.getPieceName());
-            buttons[i][j].setIcon(new ImageIcon(imgIcon));
+            Image scaledIcon = imgIcon.getScaledInstance(buttons[i][j].getWidth(), buttons[i][j].getHeight(), java.awt.Image.SCALE_SMOOTH);
+            buttons[i][j].setIcon(new ImageIcon(scaledIcon));
           }
         } 
       }
