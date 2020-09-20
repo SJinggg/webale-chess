@@ -68,7 +68,7 @@ public class Menu extends JMenuBar {
               initState.getCurrentTurn(), initState.getWinner()));
           System.out.println();
           if(initState.getCurrentTurn() != previousStatus.getCurrentTurn())
-          GameGUI.turnButtons();
+            GameGUI.turnButtons();
         } catch (Exception e) {
           e.printStackTrace();
         }
@@ -122,7 +122,6 @@ public class Menu extends JMenuBar {
           
           if(loadState.getCurrentTurn() != previousStatus.getCurrentTurn()){
             GameGUI.turnButtons();
-            System.out.println("turn");
           }
         } catch (Exception e) {
           e.printStackTrace();
