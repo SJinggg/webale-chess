@@ -55,6 +55,7 @@ public class GameGUI extends JFrame {
     }
 
     chessImg();
+    disableButtons();
 
     super.add(informationPanel, BorderLayout.PAGE_START);
     super.add(mpanel);
