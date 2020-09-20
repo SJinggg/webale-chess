@@ -95,6 +95,7 @@ public class Menu extends JMenuBar {
     Action loadAction = new AbstractAction("Load") {
       @Override
       public void actionPerformed(ActionEvent evt) {
+        GameGUI.disableButtons();
         GameManager gameManager = GameManager.getInstance();
         String inputValue = "";
         GameStatusInfo previousStatus = new GameStatusInfo();
