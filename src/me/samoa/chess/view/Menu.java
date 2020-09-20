@@ -34,16 +34,14 @@ public class Menu extends JMenuBar {
     Action endAction = new AbstractAction("End") {
       @Override
       public void actionPerformed(ActionEvent evt) {
-        if(GameManager.getInstance().getCurrentPlayer().getPlayerName() == "bluePlayer") GameGUI.turnButtons();
+        if(GameManager.getInstance().getCurrentPlayer().getTeam() == Team.BLUE) GameGUI.turnButtons();  
         API api = API.getInstance();
         api.setState(new ClearState(api));
         startAction.setEnabled(true);
         GameStatusInfo previousStatus = new GameStatusInfo();
-        GameGUI.disableButtons();
         GameGUI.setLabelMsg("Press Start to begin");
-        if(previousStatus.getCurrentTurn() == Team.BLUE){
-          GameGUI.turnButtons();
-        }
+        if(previousStatus.getCurrentTurn() == Team.BLUE) GameGUI.turnButtons();
+        GameGUI.disableButtons();
         setEnabled(false);
       }
     };
@@ -142,6 +140,7 @@ public class Menu extends JMenuBar {
     save = new JMenuItem(saveAction);
     load = new JMenuItem(loadAction);
     end = new JMenuItem(endAction);
+    endAction.setEnabled(false);
 
     super.add(start);
     super.add(save);
