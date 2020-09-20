@@ -31,7 +31,7 @@ public class GameGUI extends JFrame {
   public GameGUI() {
     super("Webale Chess");
 
-    setSize(700, 900);
+    setSize(550, 700);
 
     super.setJMenuBar(new Menu());
 
